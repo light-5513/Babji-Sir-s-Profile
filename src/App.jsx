@@ -26,7 +26,7 @@ function App() {
       </main>
 
       <footer className="py-8 text-center text-gray-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} Babji Neelam. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Mr. Babji Neelam. All rights reserved.</p>
       </footer>
     </div>
   );
