@@ -72,7 +72,7 @@ const Home = () => {
         >
           <div className="aspect-[4/5] w-full rounded-[3rem] shadow-neu-light dark:shadow-neu-dark overflow-hidden relative group transition-all duration-700 hover:-translate-y-3">
              <img 
-               src="/assets/Babji Sir.png" 
+               src="/Babji Sir.png" 
                alt="Babji Neelam" 
                className="w-full h-full object-cover object-top grayscale contrast-125 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                onError={(e) => {

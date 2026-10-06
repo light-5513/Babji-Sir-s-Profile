@@ -13,7 +13,7 @@ const Ventures = () => {
       description: 'A premier technology training incubator and enterprise solutions provider. Beyond scaling tech education to thousands of students and hosting mega-events like CodeHeat, Technical Hub builds and deploys custom applications directly for corporate organizations.',
       highlights: ['Massive Training Scale', 'Enterprise App Development', 'Signature Event: CodeHeat'],
       link: '#',
-      image: '/assets/Technical Hub Logo with TH Monogram.png'
+      image: '/Technical Hub Logo with TH Monogram.png'
     },
     {
       title: 'Torii Minds',
