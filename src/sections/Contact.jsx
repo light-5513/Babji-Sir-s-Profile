@@ -70,7 +70,7 @@ const Contact = () => {
           <div className="space-y-6">
             <Card className="flex items-center justify-between group hover:-translate-y-1">
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed bg-white dark:bg-black">
+                <div className="p-3 rounded-full neu-sphere-light dark:neu-sphere-dark">
                   <ImageIcon size={24} />
                 </div>
                 <div>
@@ -78,14 +78,14 @@ const Contact = () => {
                   <p className="text-sm text-gray-500">ZIP archive (12MB)</p>
                 </div>
               </div>
-              <button className="p-3 rounded-full shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed bg-white dark:bg-black transition-all hover:scale-95">
+              <button className="p-3 rounded-full neu-sphere-light dark:neu-sphere-dark transition-all hover:scale-95">
                 <Download size={20} />
               </button>
             </Card>
 
             <Card className="flex items-center justify-between group hover:-translate-y-1">
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed bg-white dark:bg-black">
+                <div className="p-3 rounded-full neu-sphere-light dark:neu-sphere-dark">
                   <FileText size={24} />
                 </div>
                 <div>
@@ -93,14 +93,14 @@ const Contact = () => {
                   <p className="text-sm text-gray-500">Short & Long variants (PDF/DOCX)</p>
                 </div>
               </div>
-              <button className="p-3 rounded-full shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed bg-white dark:bg-black transition-all hover:scale-95">
+              <button className="p-3 rounded-full neu-sphere-light dark:neu-sphere-dark transition-all hover:scale-95">
                 <Download size={20} />
               </button>
             </Card>
 
             <Card className="flex items-center justify-between group hover:-translate-y-1">
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed bg-white dark:bg-black">
+                <div className="p-3 rounded-full neu-sphere-light dark:neu-sphere-dark">
                   <ImageIcon size={24} />
                 </div>
                 <div>
@@ -108,7 +108,7 @@ const Contact = () => {
                   <p className="text-sm text-gray-500">TH & Torii Minds (SVG/PNG)</p>
                 </div>
               </div>
-              <button className="p-3 rounded-full shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed bg-white dark:bg-black transition-all hover:scale-95">
+              <button className="p-3 rounded-full neu-sphere-light dark:neu-sphere-dark transition-all hover:scale-95">
                 <Download size={20} />
               </button>
             </Card>

@@ -13,7 +13,8 @@ const Ventures = () => {
       description: 'A premier technology training incubator and enterprise solutions provider. Beyond scaling tech education to thousands of students and hosting mega-events like CodeHeat, Technical Hub builds and deploys custom applications directly for corporate organizations.',
       highlights: ['Massive Training Scale', 'Enterprise App Development', 'Signature Event: CodeHeat'],
       link: '#',
-      image: '/Technical Hub Logo with TH Monogram.png'
+      image: '/technical-hub-logo-theme.svg',
+      imgClass: 'invert dark:invert-0'
     },
     {
       title: 'Torii Minds',
@@ -56,7 +57,7 @@ const Ventures = () => {
                      {venture.isComponent ? (
                        <venture.component className="h-full w-auto object-contain drop-shadow-md" />
                      ) : (
-                       <img src={venture.image} alt={`${venture.title} Logo`} className="h-full w-auto object-contain drop-shadow-md" />
+                       <img src={venture.image} alt={`${venture.title} Logo`} className={`h-full w-auto object-contain drop-shadow-md ${venture.imgClass || ''}`} />
                      )}
                   </div>
                   <venture.icon className="w-8 h-8 text-gray-400" />
@@ -70,7 +71,7 @@ const Ventures = () => {
                 <div className="space-y-3 mb-8">
                   {venture.highlights.map((highlight, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-black dark:bg-white shadow-neu-light dark:shadow-neu-dark"></div>
+                      <div className="w-2 h-2 rounded-full bg-black dark:bg-light-bg shadow-neu-light dark:shadow-neu-dark"></div>
                       <span className="font-medium">{highlight}</span>
                     </div>
                   ))}

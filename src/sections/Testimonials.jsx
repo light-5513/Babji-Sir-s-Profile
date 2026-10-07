@@ -21,6 +21,16 @@ const Testimonials = () => {
     }
   ];
 
+  const partners = [
+    '/partners/Automation-Anywhere-Logo-Automation-Anywhere-Control-Room-Edureka.png',
+    '/partners/claude.png',
+    '/partners/mile2_authorized_training_center_8x_enhanced.png',
+    '/partners/openai_square.png',
+    '/partners/pega.png',
+    '/partners/redhat.webp',
+    '/partners/sno_partner-network-logo.png'
+  ];
+
   return (
     <section id="testimonials" className="py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -38,10 +48,14 @@ const Testimonials = () => {
 
         {/* Marquee */}
         <div className="relative w-full overflow-hidden mb-20 py-8 shadow-neu-light-pressed dark:shadow-neu-dark-pressed rounded-3xl">
-          <div className="flex space-x-12 animate-[marquee_20s_linear_infinite] whitespace-nowrap px-4">
-            {[1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((item, i) => (
-              <div key={i} className="inline-flex items-center justify-center text-2xl font-bold text-gray-400 opacity-50 px-8">
-                PARTNER LOGO {item}
+          <div className="flex w-max space-x-12 animate-marquee whitespace-nowrap px-4">
+            {[...partners, ...partners].map((logo, i) => (
+              <div key={i} className="flex-shrink-0 inline-flex items-center justify-center px-8 h-24 w-48">
+                <img 
+                  src={logo} 
+                  alt="Partner Logo" 
+                  className="max-h-full max-w-full object-contain" 
+                />
               </div>
             ))}
           </div>
@@ -74,6 +88,9 @@ const Testimonials = () => {
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
         }
       `}} />
     </section>

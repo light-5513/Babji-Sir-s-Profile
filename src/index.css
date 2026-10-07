@@ -17,11 +17,11 @@
   position: relative;
   width: 150px;
   height: 60px;
-  background: #d6d6d6;
+  background: #dde9e2;
   border-radius: 50px;
   box-shadow:
-    inset -8px -8px 16px #ffffff,
-    inset 8px 8px 16px #b0b0b0;
+    inset -10px 10px 20px #ffffff,
+    inset 10px -10px 20px #828985;
 }
 
 /* Hidden Checkbox */
@@ -47,13 +47,13 @@
   position: absolute;
   width: 80px;
   height: 50px;
-  background: linear-gradient(145deg, #d9d9d9, #bfbfbf);
+  background: #dde9e2;
   border-radius: 50px;
   top: 5px;
   left: 5px;
   box-shadow:
-    -4px -4px 8px #ffffff,
-    4px 4px 8px #b0b0b0;
+    -6px 6px 12px #ffffff,
+    6px -6px 12px #828985;
   transition: all 0.3s ease-in-out;
   display: flex;
   align-items: center;
@@ -74,10 +74,10 @@
 /* Active State for Toggle (ON) */
 .toggle-checkbox:checked + .switch .toggle {
   left: 65px;
-  background: linear-gradient(145deg, #cfcfcf, #a9a9a9);
+  background: #dde9e2;
   box-shadow:
-    -4px -4px 8px #ffffff,
-    4px 4px 8px #8a8a8a;
+    -6px 6px 12px #ffffff,
+    6px -6px 12px #828985;
 }
 
 .toggle-checkbox:checked + .switch .led {
@@ -88,39 +88,52 @@
 /* Hover Effect */
 .switch:hover .toggle {
   box-shadow:
-    -4px -4px 12px #ffffff,
-    4px 4px 12px #9b9b9b;
+    -10px 10px 20px #ffffff,
+    10px -10px 20px #828985;
 }
 
 /* Dark Mode Overrides */
 .dark {
-  background-color: #313338;
+  background-color: #373e3a;
   color: #f3f4f6;
 }
 
 .dark .bg-black {
-  background-color: #313338 !important;
+  background-color: #373e3a !important;
 }
 
 /* Dark Mode Overrides for Switch */
 .dark .switch-container {
-  background: #313338;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: #373e3a;
+  border: none;
   box-shadow:
-    inset -4px -4px 8px rgba(255,255,255,0.03),
-    inset 4px 4px 8px rgba(0,0,0,0.3);
+    inset -10px 10px 20px #4e5752,
+    inset 10px -10px 20px #202522;
 }
 
 .dark .toggle {
-  background: linear-gradient(145deg, #36393f, #2c2e33);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #373e3a;
+  border: none;
   box-shadow:
-    -4px -4px 8px rgba(255,255,255,0.03),
-    4px 4px 8px rgba(0,0,0,0.3);
+    -6px 6px 12px #4e5752,
+    6px -6px 12px #202522;
 }
 
 .dark .switch:hover .toggle {
   box-shadow:
-    -4px -4px 12px rgba(255,255,255,0.05),
-    4px 4px 12px rgba(0,0,0,0.4);
+    -10px 10px 20px #4e5752,
+    10px -10px 20px #202522;
+}
+
+/* Spherical Neumorphic Buttons */
+@layer utilities {
+  .neu-sphere-light {
+    background: linear-gradient(45deg, #ffffff, #c7d2cb);
+    box-shadow: 12px -12px 20px #afb8b3, -12px 12px 20px #ffffff;
+  }
+
+  .neu-sphere-dark {
+    background: linear-gradient(45deg, #4e5752, #202522);
+    box-shadow: 12px -12px 20px #202522, -12px 12px 20px #4e5752;
+  }
 }

@@ -11,16 +11,25 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        'light-bg': '#FFFFFF',
-        'dark-bg': '#000000',
+        'light-bg': '#dde9e2',
+        'dark-bg': '#373e3a',
       },
       boxShadow: {
-        'neu-light': '-5px -5px 10px rgba(240,240,240,1), 5px 5px 10px rgba(200,200,200,0.5)',
-        'neu-light-sm': '-3px -3px 6px rgba(240,240,240,1), 3px 3px 6px rgba(200,200,200,0.5)',
-        'neu-light-pressed': 'inset -5px -5px 10px rgba(240,240,240,1), inset 5px 5px 10px rgba(200,200,200,0.5)',
-        'neu-dark': '-8px -8px 16px rgba(255, 255, 255, 0.03), 8px 8px 16px rgba(0, 0, 0, 0.3)',
-        'neu-dark-sm': '-4px -4px 8px rgba(255, 255, 255, 0.03), 4px 4px 8px rgba(0, 0, 0, 0.3)',
-        'neu-dark-pressed': 'inset -8px -8px 16px rgba(255, 255, 255, 0.03), inset 8px 8px 16px rgba(0, 0, 0, 0.3)',
+        'neu-light': '-15px 15px 30px #ffffff, 15px -15px 30px #828985',
+        'neu-light-sm': '-6px 6px 12px #ffffff, 6px -6px 12px #828985',
+        'neu-light-pressed': 'inset -10px 10px 20px #ffffff, inset 10px -10px 20px #828985',
+        'neu-dark': '-15px 15px 30px #4e5752, 15px -15px 30px #202522',
+        'neu-dark-sm': '-6px 6px 12px #4e5752, 6px -6px 12px #202522',
+        'neu-dark-pressed': 'inset -10px 10px 20px #4e5752, inset 10px -10px 20px #202522',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+      animation: {
+        marquee: 'marquee 20s linear infinite',
       }
     },
   },

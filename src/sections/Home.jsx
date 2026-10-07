@@ -24,7 +24,7 @@ const StatCard = ({ icon: Icon, title, endValue, suffix = '' }) => {
 
   return (
     <Card className="flex flex-col items-center justify-center p-6 text-center group">
-      <div className="p-4 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed mb-4">
+      <div className="p-4 rounded-full neu-sphere-light dark:neu-sphere-dark mb-4">
         <Icon className="w-6 h-6" />
       </div>
       <h4 className="text-3xl font-bold mb-1">{count}{suffix}</h4>
@@ -44,7 +44,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          <div className="inline-block px-4 py-2 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-sm font-semibold tracking-wide uppercase">
+          <div className="inline-block px-5 py-2.5 rounded-full neu-sphere-light dark:neu-sphere-dark text-sm font-semibold tracking-wide uppercase">
             Founder & CEO
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">

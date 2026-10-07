@@ -12,16 +12,16 @@ const TimelineItem = ({ year, title, description, isLast }) => (
     )}
     
     <div className="md:grid md:grid-cols-2 md:gap-12 items-center relative z-10 mb-12">
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed bg-white dark:bg-black items-center justify-center">
-        <div className="w-2 h-2 rounded-full bg-black dark:bg-white"></div>
+      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full neu-sphere-light dark:neu-sphere-dark items-center justify-center">
+        <div className="w-2 h-2 rounded-full bg-black dark:bg-light-bg"></div>
       </div>
       
-      <div className="md:hidden absolute left-0 top-6 w-6 h-6 rounded-full shadow-neu-light-pressed dark:shadow-neu-dark-pressed bg-white dark:bg-black flex items-center justify-center">
-        <div className="w-2 h-2 rounded-full bg-black dark:bg-white"></div>
+      <div className="md:hidden absolute left-0 top-6 w-6 h-6 rounded-full neu-sphere-light dark:neu-sphere-dark flex items-center justify-center">
+        <div className="w-2 h-2 rounded-full bg-black dark:bg-light-bg"></div>
       </div>
 
       <div className={`md:text-right ${year % 2 === 0 ? 'md:order-1' : 'md:order-2 md:text-left'}`}>
-        <div className="inline-block px-4 py-2 rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-xl font-bold mb-4">
+        <div className="inline-block px-6 py-3 rounded-full neu-sphere-light dark:neu-sphere-dark text-xl font-bold mb-4">
           {year}
         </div>
       </div>
