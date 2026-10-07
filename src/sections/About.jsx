@@ -2,7 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '../components/Card';
 
-const TimelineItem = ({ year, title, description, isLast }) => (
+const TimelineItem = ({ year, title, description, isLast, index }) => {
+  const isEven = index % 2 === 0;
+  return (
   <div className="relative pl-8 md:pl-0">
     {!isLast && (
       <div className="hidden md:block absolute top-16 left-1/2 w-0.5 h-full bg-gray-200 dark:bg-gray-800 -translate-x-1/2"></div>
@@ -20,13 +22,13 @@ const TimelineItem = ({ year, title, description, isLast }) => (
         <div className="w-2 h-2 rounded-full bg-black dark:bg-light-bg"></div>
       </div>
 
-      <div className={`md:text-right ${year % 2 === 0 ? 'md:order-1' : 'md:order-2 md:text-left'}`}>
+      <div className={`${isEven ? 'md:order-1 md:text-right' : 'md:order-2 md:text-left'}`}>
         <div className="inline-block px-6 py-3 rounded-full neu-sphere-light dark:neu-sphere-dark text-xl font-bold mb-4">
           {year}
         </div>
       </div>
       
-      <div className={`${year % 2 === 0 ? 'md:order-2' : 'md:order-1 md:text-right'}`}>
+      <div className={`${isEven ? 'md:order-2' : 'md:order-1 md:text-right'}`}>
         <Card className="hover:-translate-y-2">
           <h3 className="text-2xl font-bold mb-2">{title}</h3>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -36,7 +38,8 @@ const TimelineItem = ({ year, title, description, isLast }) => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const About = () => {
   const milestones = [
@@ -89,6 +92,7 @@ const About = () => {
               <TimelineItem 
                 {...milestone} 
                 isLast={index === milestones.length - 1} 
+                index={index}
               />
             </motion.div>
           ))}
