@@ -12,7 +12,7 @@ const Ventures = () => {
       icon: Briefcase,
       description: 'A premier technology training incubator and enterprise solutions provider. Beyond scaling tech education to thousands of students and hosting mega-events like CodeHeat, Technical Hub builds and deploys custom applications directly for corporate organizations.',
       highlights: ['Massive Training Scale', 'Enterprise App Development', 'Signature Event: CodeHeat'],
-      link: '#',
+      link: 'https://technicalhub.io/',
       image: '/technical-hub-logo-theme.svg',
       imgClass: 'invert dark:invert-0'
     },
@@ -21,7 +21,7 @@ const Ventures = () => {
       icon: BrainCircuit,
       description: 'An advanced EdTech platform leveraging Artificial Intelligence. We provide AI-driven curriculums, intelligent ATS engines, and AI-powered interview simulations to prepare students for the modern tech landscape.',
       highlights: ['AI-Driven Curriculum', 'Smart ATS Engine', 'AI Interview Simulations'],
-      link: '#',
+      link: 'https://toriiminds.com/',
       isComponent: true,
       component: ToriiLogo
     }
@@ -53,7 +53,7 @@ const Ventures = () => {
             >
               <Card className="h-full flex flex-col hover:-translate-y-2 group">
                 <div className="flex items-center justify-between mb-8">
-                  <div className="h-24 flex items-center justify-start">
+                  <div className="h-32 flex items-center justify-start">
                      {venture.isComponent ? (
                        <venture.component className="h-full w-auto object-contain drop-shadow-md" />
                      ) : (
@@ -77,7 +77,7 @@ const Ventures = () => {
                   ))}
                 </div>
                 
-                <Button as="a" href={venture.link} className="w-full gap-2">
+                <Button as="a" href={venture.link} target="_blank" rel="noopener noreferrer" className="w-full gap-2">
                   Visit Website <ExternalLink size={18} />
                 </Button>
               </Card>

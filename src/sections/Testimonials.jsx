@@ -27,7 +27,7 @@ const Testimonials = () => {
     '/partners/mile2_authorized_training_center_8x_enhanced.png',
     '/partners/openai_square.png',
     '/partners/pega.png',
-    '/partners/redhat.webp',
+    '/partners/redhat.png',
     '/partners/sno_partner-network-logo.png'
   ];
 
@@ -50,11 +50,11 @@ const Testimonials = () => {
         <div className="relative w-full overflow-hidden mb-20 py-8 shadow-neu-light-pressed dark:shadow-neu-dark-pressed rounded-3xl">
           <div className="flex w-max space-x-12 animate-marquee whitespace-nowrap px-4">
             {[...partners, ...partners].map((logo, i) => (
-              <div key={i} className="flex-shrink-0 inline-flex items-center justify-center px-8 h-24 w-48">
+              <div key={i} className="flex-shrink-0 inline-flex items-center justify-center px-12 h-40 w-80">
                 <img 
                   src={logo} 
                   alt="Partner Logo" 
-                  className="max-h-full max-w-full object-contain" 
+                  className={`max-h-full max-w-full object-contain ${logo.includes('sno_partner') || logo.includes('Automation-Anywhere') ? 'scale-[1.5]' : ''}`} 
                 />
               </div>
             ))}

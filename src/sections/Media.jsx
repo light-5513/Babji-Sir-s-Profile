@@ -2,11 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '../components/Card';
 import { Play, Mic, FileText, Linkedin } from 'lucide-react';
+import { GrOracle } from 'react-icons/gr';
+
+const OracleAcademyIcon = ({ className }) => (
+  <div className={`flex items-center gap-3 ${className}`} style={{ width: 'auto', height: 'auto' }}>
+    <GrOracle className="w-10 h-10" />
+    <span className="font-bold text-2xl tracking-tight">Oracle Academy</span>
+  </div>
+);
 
 const Media = () => {
   const mediaItems = [
     { type: 'video', title: 'Future of AI in EdTech', icon: Play, desc: 'Keynote speaking engagement' },
-    { type: 'article', title: 'Bridging the Talent Gap', icon: FileText, desc: 'Published Article' },
+    { type: 'article', title: 'Bridging the Talent Gap', icon: OracleAcademyIcon, desc: 'Published Article', link: 'https://academy.oracle.com/en/about-success-spotlight-babji-neelam.html' },
     { type: 'podcast', title: 'EdTech Innovators', icon: Mic, desc: 'Podcast Interview' },
     { type: 'highlight', title: 'CodeHeat 2023 Recap', icon: Play, desc: 'Event Highlight Reel' },
   ];
@@ -43,13 +51,25 @@ const Media = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="cursor-pointer group hover:-translate-y-2 h-full flex flex-col">
-                <div className="aspect-video rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden relative">
-                  <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
-                </div>
-                <h4 className="text-lg font-bold mb-2">{item.title}</h4>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-auto">{item.desc}</p>
-              </Card>
+              {item.link ? (
+                <a href={item.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <Card className="cursor-pointer group hover:-translate-y-2 h-full flex flex-col">
+                    <div className="aspect-video rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden relative">
+                      <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">{item.title}</h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-auto">{item.desc}</p>
+                  </Card>
+                </a>
+              ) : (
+                <Card className="cursor-pointer group hover:-translate-y-2 h-full flex flex-col">
+                  <div className="aspect-video rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden relative">
+                    <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
+                  </div>
+                  <h4 className="text-lg font-bold mb-2">{item.title}</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-auto">{item.desc}</p>
+                </Card>
+              )}
             </motion.div>
           ))}
         </div>
