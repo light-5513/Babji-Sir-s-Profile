@@ -125,6 +125,42 @@
     10px -10px 20px #202522;
 }
 
+.drive-ready-gallery {
+  overflow: hidden;
+}
+
+.drive-ready-gallery-track {
+  display: flex;
+  width: max-content;
+  animation: drive-ready-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.drive-ready-gallery-group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.drive-ready-gallery:hover .drive-ready-gallery-track,
+.drive-ready-gallery:focus-within .drive-ready-gallery-track {
+  animation-play-state: paused;
+}
+
+@keyframes drive-ready-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drive-ready-gallery-track {
+    animation: none;
+  }
+}
+
 /* Spherical Neumorphic Buttons */
 @layer utilities {
   .neu-sphere-light {

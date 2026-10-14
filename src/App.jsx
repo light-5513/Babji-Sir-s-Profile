@@ -4,6 +4,7 @@ import ThemeToggle from './components/ThemeToggle';
 import AIAgentButton from './components/AIAgentButton';
 import Home from './sections/Home';
 import About from './sections/About';
+import Expertise from './sections/Expertise';
 import Ventures from './sections/Ventures';
 import Media from './sections/Media';
 import Testimonials from './sections/Testimonials';
@@ -19,6 +20,7 @@ function App() {
       <main>
         <Home />
         <About />
+        <Expertise />
         <Ventures />
         <Media />
         <Testimonials />

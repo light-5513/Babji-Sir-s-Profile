@@ -1,0 +1,194 @@
+{
+  "package.json": {
+    "mtime": 1791366415.14248,
+    "seen": 1791955640.7895474,
+    "ast_hash": "fd5daa95f6e056bd9cf7feeaec4aa79e",
+    "semantic_hash": "fd5daa95f6e056bd9cf7feeaec4aa79e"
+  },
+  "postcss.config.js": {
+    "mtime": 1791282087.0940025,
+    "seen": 1791955640.7895474,
+    "ast_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0",
+    "semantic_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0"
+  },
+  "src/App.jsx": {
+    "mtime": 1791956604.530821,
+    "seen": 1791962030.1497138,
+    "ast_hash": "e96934584a091c15b5f74db1558e515f",
+    "semantic_hash": "e96934584a091c15b5f74db1558e515f"
+  },
+  "src/components/AIAgentButton.jsx": {
+    "mtime": 1791351227.3438818,
+    "seen": 1791955640.7895474,
+    "ast_hash": "d10184dfa965ef1a9073e8873187c2e3",
+    "semantic_hash": "d10184dfa965ef1a9073e8873187c2e3"
+  },
+  "src/components/Button.jsx": {
+    "mtime": 1791351227.3448832,
+    "seen": 1791955640.7895474,
+    "ast_hash": "378aaf2b51d18a073541af7014d8a9c7",
+    "semantic_hash": "378aaf2b51d18a073541af7014d8a9c7"
+  },
+  "src/components/Card.jsx": {
+    "mtime": 1791351227.346862,
+    "seen": 1791955640.7895474,
+    "ast_hash": "d4696b81494eca8074c561a459ec3be5",
+    "semantic_hash": "d4696b81494eca8074c561a459ec3be5"
+  },
+  "src/components/Navbar.jsx": {
+    "mtime": 1791956616.5938845,
+    "seen": 1791962030.1497138,
+    "ast_hash": "a727f86d7b20fc1f17745cb6b272e475",
+    "semantic_hash": "a727f86d7b20fc1f17745cb6b272e475"
+  },
+  "src/components/ThemeContext.jsx": {
+    "mtime": 1791351227.3493867,
+    "seen": 1791955640.7895474,
+    "ast_hash": "2fd399102b173b81d4b5988daaf7cb77",
+    "semantic_hash": "2fd399102b173b81d4b5988daaf7cb77"
+  },
+  "src/components/ThemeToggle.jsx": {
+    "mtime": 1791351227.3510153,
+    "seen": 1791955640.7895474,
+    "ast_hash": "7e447e6a60ca3815b1bfb0d7438c9d4a",
+    "semantic_hash": "7e447e6a60ca3815b1bfb0d7438c9d4a"
+  },
+  "src/components/ToriiLogo.jsx": {
+    "mtime": 1791351227.3532443,
+    "seen": 1791955640.7895474,
+    "ast_hash": "2f4bd01451ecd1d53a2a84422f49379d",
+    "semantic_hash": "2f4bd01451ecd1d53a2a84422f49379d"
+  },
+  "src/main.jsx": {
+    "mtime": 1791351227.374371,
+    "seen": 1791955640.7895474,
+    "ast_hash": "22d8df904987fabb22af73552417159a",
+    "semantic_hash": "22d8df904987fabb22af73552417159a"
+  },
+  "src/sections/About.jsx": {
+    "mtime": 1791368366.4109757,
+    "seen": 1791955640.7895474,
+    "ast_hash": "e15c7bc1fe4be29fc3631f2309defe06",
+    "semantic_hash": "e15c7bc1fe4be29fc3631f2309defe06"
+  },
+  "src/sections/Contact.jsx": {
+    "mtime": 1791351966.278723,
+    "seen": 1791955640.7895474,
+    "ast_hash": "e44e05301bfbbccfdeebd9dd969dac7b",
+    "semantic_hash": "e44e05301bfbbccfdeebd9dd969dac7b"
+  },
+  "src/sections/Home.jsx": {
+    "mtime": 1791352177.1418033,
+    "seen": 1791955640.7895474,
+    "ast_hash": "94390e1d1017b4badfe39a53dc247dd5",
+    "semantic_hash": "94390e1d1017b4badfe39a53dc247dd5"
+  },
+  "src/sections/Media.jsx": {
+    "mtime": 1791366661.0452502,
+    "seen": 1791955640.7895474,
+    "ast_hash": "ee13ecddee68df0b271251064db7d90a",
+    "semantic_hash": "ee13ecddee68df0b271251064db7d90a"
+  },
+  "src/sections/Testimonials.jsx": {
+    "mtime": 1791365877.862118,
+    "seen": 1791955640.7895474,
+    "ast_hash": "6e5b912f1e95e04472fbbc7f715492b3",
+    "semantic_hash": "6e5b912f1e95e04472fbbc7f715492b3"
+  },
+  "src/sections/Ventures.jsx": {
+    "mtime": 1791365775.7552688,
+    "seen": 1791955640.7895474,
+    "ast_hash": "1b4dd5185287b64f8ec6ed32e9f7b13d",
+    "semantic_hash": "1b4dd5185287b64f8ec6ed32e9f7b13d"
+  },
+  "tailwind.config.js": {
+    "mtime": 1791361535.0655596,
+    "seen": 1791955640.7895474,
+    "ast_hash": "6cc85fca710c0b25965c6d066603af33",
+    "semantic_hash": "6cc85fca710c0b25965c6d066603af33"
+  },
+  "vite.config.js": {
+    "mtime": 1791282085.0634992,
+    "seen": 1791955640.7895474,
+    "ast_hash": "9bf09b6d97edba4eebf0fe93baaad662",
+    "semantic_hash": "9bf09b6d97edba4eebf0fe93baaad662"
+  },
+  "index.html": {
+    "mtime": 1791351227.3754256,
+    "seen": 1791955640.7895474,
+    "ast_hash": "73889d5efad6658fad1b9f4597a76b93",
+    "semantic_hash": "73889d5efad6658fad1b9f4597a76b93"
+  },
+  "public/Babji Sir.png": {
+    "mtime": 1791023977.1169186,
+    "seen": 1791955640.7895474,
+    "ast_hash": "2589e063d8744b7cd39beba658ca8231",
+    "semantic_hash": "2589e063d8744b7cd39beba658ca8231"
+  },
+  "public/partners/Automation-Anywhere-Logo-Automation-Anywhere-Control-Room-Edureka.png": {
+    "mtime": 1790243997.9772878,
+    "seen": 1791955640.7895474,
+    "ast_hash": "1e57e87c4b80996f39491e09b6eddeed",
+    "semantic_hash": "1e57e87c4b80996f39491e09b6eddeed"
+  },
+  "public/partners/claude.png": {
+    "mtime": 1791365660.2836854,
+    "seen": 1791955640.7895474,
+    "ast_hash": "da9b1bfdacdbc550d3bddb9f80424943",
+    "semantic_hash": "da9b1bfdacdbc550d3bddb9f80424943"
+  },
+  "public/partners/mile2_authorized_training_center_8x_enhanced.png": {
+    "mtime": 1791364860.788984,
+    "seen": 1791955640.7895474,
+    "ast_hash": "367e82aa2a41e56d0adb03887fbea7aa",
+    "semantic_hash": "367e82aa2a41e56d0adb03887fbea7aa"
+  },
+  "public/partners/openai_square.png": {
+    "mtime": 1791365645.7046196,
+    "seen": 1791955640.7895474,
+    "ast_hash": "df43002c91a5b3c8d251dc6e6532ae7a",
+    "semantic_hash": "df43002c91a5b3c8d251dc6e6532ae7a"
+  },
+  "public/partners/pega.png": {
+    "mtime": 1791364878.692675,
+    "seen": 1791955640.7895474,
+    "ast_hash": "12068459ea378920f1a7d25329b2b1c5",
+    "semantic_hash": "12068459ea378920f1a7d25329b2b1c5"
+  },
+  "public/partners/redhat.png": {
+    "mtime": 1791462305.1673446,
+    "seen": 1791955640.7895474,
+    "ast_hash": "da2a0c6b19d047b64529c993b743cc42",
+    "semantic_hash": "da2a0c6b19d047b64529c993b743cc42"
+  },
+  "public/partners/sno_partner-network-logo.png": {
+    "mtime": 1790604522.1858797,
+    "seen": 1791955640.7895474,
+    "ast_hash": "07e666f772d4028d048cd7dc3e56d116",
+    "semantic_hash": "07e666f772d4028d048cd7dc3e56d116"
+  },
+  "public/technical-hub-logo-theme.svg": {
+    "mtime": 1791352386.3860023,
+    "seen": 1791955640.7895474,
+    "ast_hash": "a1024bdd9e6b8f831dd291873a91ee23",
+    "semantic_hash": "a1024bdd9e6b8f831dd291873a91ee23"
+  },
+  "public/toriiminds.svg": {
+    "mtime": 1791026726.696278,
+    "seen": 1791955640.7895474,
+    "ast_hash": "ef7b89ef3a9d8ba126efd4296611b2be",
+    "semantic_hash": "ef7b89ef3a9d8ba126efd4296611b2be"
+  },
+  "src/sections/Expertise.jsx": {
+    "mtime": 1791961358.599172,
+    "seen": 1791962030.1497138,
+    "ast_hash": "9e7774d6df9001f4136ad3c2fa8c714f",
+    "semantic_hash": "9e7774d6df9001f4136ad3c2fa8c714f"
+  },
+  "public/partners/redhat.webp": {
+    "mtime": 1791044733.3628042,
+    "seen": 1791962030.1497138,
+    "ast_hash": "436d1271f9afc5c7cc7b58b0c12cdbc6",
+    "semantic_hash": "436d1271f9afc5c7cc7b58b0c12cdbc6"
+  }
+}
