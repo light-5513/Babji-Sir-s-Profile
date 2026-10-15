@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useExpertiseScroll from '../hooks/useExpertiseScroll';
 import { motion, useReducedMotion } from 'framer-motion';
 import { 
   GraduationCap, 
@@ -269,7 +270,7 @@ const traitData = [
           { name: 'Torii Minds', src: '/assets/tori-black.svg' },
           { name: 'NCC Limited', src: '/assets/ncc-logo-transparent.png' }
         ],
-        role: 'Founded 2025 · Backed by NCC',
+        role: 'Founder & CEO · Founded 2025 · Backed by NCC',
         description: 'Torii Minds, inspired by the Japanese Torii gate, is a comprehensive tech education platform designed to transform engineering students into industry-ready professionals. Serving as a gateway to tech excellence, the platform bridges the gap between academic learning and modern industry demands through structured coding curriculums, AI integration, and hands-on career-readiness training.',
       },
       {
@@ -443,242 +444,9 @@ const Expertise = () => {
     activeStageIndexRef.current = activeStageIndex;
   }, [activeStageIndex]);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return undefined;
-
-    let isTransitioning = false;
-    let isWheelLocked = false;
-    let wheelUnlockTimer = null;
-    let lastStepTime = 0;
-    let lastDir = 0;
-    const EXIT_COOLDOWN_MS = 500;
-    const STEP_COOLDOWN_MS = 380;
-    const MIN_WHEEL_DELTA = 3;
-
-    const getEntryY = () => el.offsetTop - 80;
-
-    const isActive = () => {
-      const entryY = getEntryY();
-      const rect = el.getBoundingClientRect();
-      const inScrollRange = window.scrollY >= entryY - 80 && window.scrollY <= el.offsetTop + el.offsetHeight;
-      const inView = rect.top <= 120 && rect.bottom >= 150;
-      return inScrollRange || inView;
-    };
-
-    const stepStage = (dir) => {
-      const current = activeStageIndexRef.current;
-      const next = current + dir;
-      if (next < 0 || next >= expertiseStages.length) return false;
-      activeStageIndexRef.current = next;
-      setActiveStageIndex(next);
-      return true;
-    };
-
-    const goToSection = (sectionId, fallbackOffset) => {
-      if (isTransitioning) return;
-      isTransitioning = true;
-      const target = document.getElementById(sectionId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: fallbackOffset, behavior: 'smooth' });
-      }
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 900);
-    };
-
-    // ── Wheel handling: 1 deliberate gesture = exactly 1 slide (ZERO SKIPPING) ──
-    const onWheel = (e) => {
-      if (e.ctrlKey) return; // Allow pinch-zoom
-      if (isTransitioning) {
-        e.preventDefault();
-        return;
-      }
-
-      if (!isActive()) return;
-      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      if (Math.abs(delta) < MIN_WHEEL_DELTA) return;
-
-      const now = Date.now();
-      const entryY = getEntryY();
-      const dir = delta > 0 ? 1 : -1;
-      const current = activeStageIndexRef.current;
-      const isReversing = lastDir !== 0 && dir !== lastDir;
-
-      // ── Handle Exit at Last Slide (Innovation / AptLogic / Oman HRMS) ────────
-      if (dir > 0 && current >= expertiseStages.length - 1) {
-        e.preventDefault();
-        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
-          lastStepTime = now;
-          goToSection('ventures', el.offsetTop + el.offsetHeight);
-        }
-        return;
-      }
-
-      // ── Handle Exit at First Slide (Teaching / APTECH) ─────────────────────
-      if (dir < 0 && current <= 0) {
-        e.preventDefault();
-        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
-          lastStepTime = now;
-          goToSection('about', Math.max(0, el.offsetTop - window.innerHeight));
-        }
-        return;
-      }
-
-      // Always lock native page scroll while traversing inside expertise subsections
-      e.preventDefault();
-
-      if (Math.abs(window.scrollY - entryY) > 2) {
-        window.scrollTo({ top: entryY, behavior: 'instant' });
-      }
-
-      // If reversing direction (e.g. from down to up or up to down), unlock immediately!
-      if (isReversing) {
-        isWheelLocked = false;
-      }
-
-      // Debounce unlock: after 180ms of wheel silence, allow next step
-      clearTimeout(wheelUnlockTimer);
-      wheelUnlockTimer = setTimeout(() => {
-        isWheelLocked = false;
-        lastDir = 0;
-      }, 180);
-
-      // If locked within the same gesture, ignore decaying momentum
-      if (isWheelLocked && !isReversing) {
-        return;
-      }
-
-      if (now - lastStepTime < STEP_COOLDOWN_MS && !isReversing) {
-        return;
-      }
-
-      // Step stage
-      isWheelLocked = true;
-      lastDir = dir;
-      lastStepTime = now;
-      stepStage(dir);
-    };
-
-    // ── Touch handling: 1 finger swipe = exactly 1 slide ───────────────────
-    let touchStartY = null;
-    let hasTouchStepped = false;
-
-    const onTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-      hasTouchStepped = false;
-    };
-
-    const onTouchMove = (e) => {
-      if (touchStartY === null || isTransitioning || hasTouchStepped) return;
-      if (!isActive()) return;
-
-      const dy = touchStartY - e.touches[0].clientY;
-      const dx = (e.touches[0].clientX || 0); // ignore horizontal drift
-      if (Math.abs(dy) < 40) return;
-
-      const dir = dy > 0 ? 1 : -1;
-      const current = activeStageIndexRef.current;
-      const now = Date.now();
-
-      if (dir > 0 && current >= expertiseStages.length - 1) {
-        e.preventDefault();
-        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
-          lastStepTime = now;
-          hasTouchStepped = true;
-          goToSection('ventures', el.offsetTop + el.offsetHeight);
-        }
-        return;
-      }
-
-      if (dir < 0 && current <= 0) {
-        e.preventDefault();
-        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
-          lastStepTime = now;
-          hasTouchStepped = true;
-          goToSection('about', Math.max(0, el.offsetTop - window.innerHeight));
-        }
-        return;
-      }
-
-      e.preventDefault();
-      hasTouchStepped = true;
-      lastStepTime = now;
-      stepStage(dir);
-    };
-
-    const onTouchEnd = () => {
-      touchStartY = null;
-      hasTouchStepped = false;
-    };
-
-    // ── Keyboard navigation: 1 key press = exactly 1 slide ─────────────────
-    let arrowHeld = false;
-    const onKeyDown = (e) => {
-      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-      if (isTransitioning || !isActive() || arrowHeld) return;
-
-      const dir = e.key === 'ArrowDown' ? 1 : -1;
-      const current = activeStageIndexRef.current;
-      const now = Date.now();
-
-      if (dir > 0 && current >= expertiseStages.length - 1) {
-        e.preventDefault();
-        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
-          lastStepTime = now;
-          arrowHeld = true;
-          goToSection('ventures', el.offsetTop + el.offsetHeight);
-        }
-        return;
-      }
-
-      if (dir < 0 && current <= 0) {
-        e.preventDefault();
-        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
-          lastStepTime = now;
-          arrowHeld = true;
-          goToSection('about', Math.max(0, el.offsetTop - window.innerHeight));
-        }
-        return;
-      }
-
-      e.preventDefault();
-      arrowHeld = true;
-      lastStepTime = now;
-      stepStage(dir);
-    };
-
-    const onKeyUp = (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        arrowHeld = false;
-      }
-    };
-
-    window.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
-    window.addEventListener('touchend', onTouchEnd, { passive: true });
-    window.addEventListener('keydown', onKeyDown);
-    window.addEventListener('keyup', onKeyUp);
-
-    return () => {
-      clearTimeout(wheelUnlockTimer);
-      window.removeEventListener('wheel', onWheel);
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
-      window.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('keyup', onKeyUp);
-    };
-  }, []);
-
-  const scrollToStage = (targetStageIndex) => {
-    const clamped = Math.max(0, Math.min(expertiseStages.length - 1, targetStageIndex));
-    activeStageIndexRef.current = clamped;
-    setActiveStageIndex(clamped);
-  };
+  const scrollToStage = useExpertiseScroll(
+    containerRef, activeStageIndexRef, setActiveStageIndex, expertiseStages.length
+  );
 
   const scrollToTrait = (targetTraitIndex) => {
     const stageIndex = expertiseStages.findIndex((stage) => stage.traitIndex === targetTraitIndex);
@@ -700,7 +468,7 @@ const Expertise = () => {
       <div className="sticky top-20 h-[calc(100svh-5rem)] w-full flex flex-col justify-between p-3 sm:p-5 md:p-6 lg:p-8 overflow-hidden bg-light-bg dark:bg-dark-bg transition-colors duration-300">
         <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between gap-4 pb-2.5">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-bold px-3 py-1.5 rounded-md bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300">
+            <span className="text-xs sm:text-sm font-bold px-4 py-2 rounded-xl neu-sphere-light dark:neu-sphere-dark text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm tracking-wider">
               {String(activeStageIndex + 1).padStart(2, '0')} / {expertiseStages.length}
             </span>
           </div>
@@ -711,10 +479,10 @@ const Expertise = () => {
                 key={trait.id}
                 onClick={() => scrollToTrait(index)}
                 aria-pressed={index === activeTraitIndex}
-                className={`rounded-md px-3 py-1.5 text-xs font-bold transition-colors ${
+                className={`rounded-xl px-4 py-2 text-xs font-bold transition-all duration-300 ${
                   index === activeTraitIndex
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800'
+                    ? 'bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-pressed dark:shadow-neu-dark-pressed scale-[0.98]'
+                    : 'bg-light-bg dark:bg-dark-bg text-gray-700 dark:text-gray-300 shadow-neu-light-sm dark:shadow-neu-dark-sm hover:shadow-neu-light-pressed dark:hover:shadow-neu-dark-pressed hover:-translate-y-0.5'
                 }`}
               >
                 {trait.shortTitle}
@@ -726,7 +494,7 @@ const Expertise = () => {
             <button
               onClick={() => scrollToStage(Math.max(0, activeStageIndex - 1))}
               disabled={activeStageIndex === 0}
-              className="p-2 rounded-md bg-transparent text-gray-700 dark:text-gray-200 disabled:opacity-30 hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-700 dark:hover:text-blue-300 active:scale-95 transition-all"
+              className="p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 disabled:opacity-30 disabled:pointer-events-none transition-all"
               title="Previous expertise"
               aria-label="Previous expertise"
             >
@@ -735,7 +503,7 @@ const Expertise = () => {
             <button
               onClick={() => scrollToStage(Math.min(expertiseStages.length - 1, activeStageIndex + 1))}
               disabled={activeStageIndex === expertiseStages.length - 1}
-              className="p-2 rounded-md bg-transparent text-blue-700 dark:text-blue-300 disabled:opacity-30 hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-95 transition-all"
+              className="p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 disabled:opacity-30 disabled:pointer-events-none transition-all"
               title="Next expertise"
               aria-label="Next expertise"
             >
@@ -751,17 +519,17 @@ const Expertise = () => {
               initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: 'easeOut' }}
-              className="w-full rounded-2xl bg-blue-500/10 p-6 sm:p-8 space-y-5"
+              className="w-full rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark p-6 sm:p-8 space-y-5 transition-all duration-300"
             >
               <div className="flex items-start gap-4">
-                <div className="pt-1">
-                  {React.createElement(activeTrait.icon, { size: 28, className: 'text-blue-700 dark:text-blue-300' })}
+                <div className="p-3.5 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm">
+                  {React.createElement(activeTrait.icon, { size: 24 })}
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-300">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     Main Expertise · Pillar {activeTrait.number} of {traits.length}
                   </span>
-                  <h2 className="mt-1 text-3xl sm:text-4xl font-black text-gray-900 dark:text-white">
+                  <h2 className="mt-1 text-3xl sm:text-4xl font-extrabold text-black dark:text-white">
                     {activeTrait.title}
                   </h2>
                 </div>
@@ -772,15 +540,17 @@ const Expertise = () => {
               </p>
 
               {activeTrait.periods?.length > 0 && (
-                <div className="space-y-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                <div className="space-y-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     {activeTrait.periodLabel}
                   </span>
-                  {activeTrait.periods.map((period) => (
-                    <p key={period} className="font-semibold text-blue-700 dark:text-blue-300">
-                      {period}
-                    </p>
-                  ))}
+                  <div className="flex flex-wrap gap-2">
+                    {activeTrait.periods.map((period) => (
+                      <span key={period} className="inline-block px-3.5 py-1.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200">
+                        {period}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -791,10 +561,10 @@ const Expertise = () => {
               )}
 
               {activeTrait.id === 'teaching' && (
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">Started</span>
-                    <p className="mt-1 text-sm font-semibold text-gray-700 dark:text-gray-200">August 1997 · APTECH, Lab Technician</p>
+                <div className="grid gap-4 sm:grid-cols-2 pt-2">
+                  <div className="p-4 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Started</span>
+                    <p className="mt-1 text-sm font-semibold text-gray-800 dark:text-gray-200">August 1997 · APTECH, Lab Technician</p>
                   </div>
                 </div>
               )}
@@ -810,9 +580,11 @@ const Expertise = () => {
           >
             <div className={`flex-1 min-h-0 flex flex-col justify-center py-8 ${activeStage.subExpertise?.centered ? 'items-center text-center px-4' : 'pl-3 sm:pl-5 md:pl-8'}`}>
               {activeStage.subExpertise && (
-                <div className="space-y-3">
+                <div className="space-y-4">
                     {ActiveSubExpertiseIcon && (
-                      <ActiveSubExpertiseIcon size={64} strokeWidth={1.5} className="mb-2 text-blue-700 dark:text-blue-300" />
+                      <div className="inline-flex p-4 rounded-full neu-sphere-light dark:neu-sphere-dark shadow-neu-light-sm dark:shadow-neu-dark-sm mb-2 text-black dark:text-white">
+                        <ActiveSubExpertiseIcon size={36} strokeWidth={1.75} />
+                      </div>
                     )}
                     {activeStage.subExpertise.logo && (
                       <img
@@ -838,28 +610,28 @@ const Expertise = () => {
                       </div>
                     )}
                     {(!activeStage.subExpertise.logo || activeStage.subExpertise.showOrganizationWithLogo) && !activeStage.subExpertise.imageCard && (
-                      <h3 className={`text-4xl sm:text-5xl font-black text-gray-900 dark:text-white ${activeStage.subExpertise.centered ? 'w-full text-center' : ''}`}>
+                      <h3 className={`text-4xl sm:text-5xl font-black text-black dark:text-white ${activeStage.subExpertise.centered ? 'w-full text-center' : ''}`}>
                         {activeStage.subExpertise.organization}
                       </h3>
                     )}
                     {activeStage.subExpertise.role && !activeStage.subExpertise.imageCard && (
-                      <p className="text-xl sm:text-2xl font-semibold text-blue-700 dark:text-blue-300">
+                      <p className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200 tracking-tight">
                         {activeStage.subExpertise.role}
                       </p>
                     )}
                     {activeStage.subExpertise.headline && (
-                      <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+                      <p className="text-xl sm:text-2xl font-bold text-black dark:text-white">
                         {activeStage.subExpertise.headline}
                       </p>
                     )}
                     {activeStage.subExpertise.socialStats?.length > 0 && (
-                      <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                      <div className="flex flex-wrap items-center gap-4">
                         {activeStage.subExpertise.socialStats.map((stat) => (
-                          <div key={stat.platform} className="flex items-baseline gap-2">
-                            <span className="text-2xl sm:text-3xl font-black text-blue-700 dark:text-blue-300">
+                          <div key={stat.platform} className="px-5 py-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm flex items-baseline gap-2">
+                            <span className="text-2xl sm:text-3xl font-black text-black dark:text-white">
                               {stat.followers}
                             </span>
-                            <span className="text-base font-semibold text-gray-600 dark:text-gray-300">
+                            <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">
                               {stat.platform}
                             </span>
                           </div>
@@ -867,16 +639,16 @@ const Expertise = () => {
                       </div>
                     )}
                     {activeStage.subExpertise.description && !activeStage.subExpertise.imageCard && (
-                      <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-200">
+                      <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
                         {activeStage.subExpertise.description}
                       </p>
                     )}
                     {activeStage.subExpertise.impact && (
-                      <div className="mt-4 max-w-3xl space-y-1">
-                        <p className="text-sm font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+                      <div className="mt-4 max-w-3xl p-5 rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed space-y-1">
+                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                           Core Impact
                         </p>
-                        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-200">
+                        <p className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-200">
                           {activeStage.subExpertise.impact}
                         </p>
                       </div>
@@ -884,8 +656,8 @@ const Expertise = () => {
                     {activeStage.subExpertise.locations?.length > 0 && (
                       <div className="mt-4 grid gap-3 sm:grid-cols-2">
                         {activeStage.subExpertise.locations.map((location, index) => (
-                          <div key={location} className="flex items-start gap-3">
-                            <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
+                          <div key={location} className="flex items-center gap-3 p-3 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm">
+                            <span className="w-6 h-6 rounded-full neu-sphere-light dark:neu-sphere-dark shadow-neu-light-sm dark:shadow-neu-dark-sm flex items-center justify-center text-xs font-bold text-black dark:text-white flex-shrink-0">
                               {String(index + 1).padStart(2, '0')}
                             </span>
                             <span className="font-semibold text-gray-800 dark:text-gray-200">
@@ -900,7 +672,7 @@ const Expertise = () => {
                         href={activeStage.subExpertise.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex font-semibold text-blue-700 underline decoration-blue-400 underline-offset-4 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-100"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 font-semibold text-sm transition-all"
                       >
                         Read the Oracle Academy success story
                       </a>
@@ -911,9 +683,9 @@ const Expertise = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Open Oracle Academy success story"
-                        className="mt-4 mx-auto block w-full max-w-[520px] rounded-2xl bg-white/55 p-4 sm:p-5 dark:bg-gray-900/40"
+                        className="mt-4 mx-auto block w-full max-w-[520px] rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark p-4 sm:p-5 hover:-translate-y-1 transition-all"
                       >
-                        <div className="overflow-hidden rounded-xl bg-white/80 dark:bg-gray-800/70">
+                        <div className="overflow-hidden rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed">
                           <img
                             src={activeStage.subExpertise.image}
                             alt={activeStage.subExpertise.imageAlt}
@@ -921,7 +693,7 @@ const Expertise = () => {
                           />
                         </div>
                         <div className="space-y-1 pt-4">
-                          <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                          <h3 className="text-lg font-bold text-black dark:text-white">
                             {activeStage.subExpertise.imageTitle}
                           </h3>
                           <p className="font-semibold text-gray-800 dark:text-gray-200">
@@ -951,7 +723,7 @@ const Expertise = () => {
                         <img
                           src={activeStage.subExpertise.image}
                           alt={activeStage.subExpertise.imageAlt || `${activeStage.subExpertise.organization} image`}
-                          className="mt-4 block h-auto w-full max-w-[800px] rounded-lg"
+                          className="mt-4 block h-auto w-full max-w-[800px] rounded-xl shadow-neu-light-sm dark:shadow-neu-dark-sm"
                         />
                       )
                     )}
@@ -1006,7 +778,7 @@ const Expertise = () => {
                           <img
                             src={activeStage.subExpertise.images[1]}
                             alt={`${activeStage.subExpertise.organization} mentoring image`}
-                            className="aspect-video w-full rounded-lg object-cover"
+                            className="aspect-video w-full rounded-xl object-cover shadow-neu-light-sm dark:shadow-neu-dark-sm"
                             loading="lazy"
                           />
                         </div>
@@ -1024,10 +796,10 @@ const Expertise = () => {
                                     key={`${copy}-${image}`}
                                     src={image}
                                     alt={copy === 0 ? `${activeStage.subExpertise.organization} image ${index + 1}` : ''}
-                                    className={`aspect-video w-96 flex-shrink-0 rounded-xl ${
+                                    className={`aspect-video w-96 flex-shrink-0 rounded-xl shadow-neu-light-sm dark:shadow-neu-dark-sm ${
                                       activeStage.subExpertise.imagesFit === 'contain'
                                         ? 'object-contain'
-                                        : 'rounded-lg object-cover sm:w-[30rem] lg:w-[40rem]'
+                                        : 'object-cover sm:w-[30rem] lg:w-[40rem]'
                                     }`}
                                     loading="lazy"
                                   />
@@ -1039,7 +811,7 @@ const Expertise = () => {
                       )
                     )}
                     {activeStage.subExpertise.video && (
-                      <div className="relative mx-auto mt-4 aspect-video w-full max-w-[760px] overflow-hidden rounded-xl shadow-md group">
+                      <div className="relative mx-auto mt-4 aspect-video w-full max-w-[760px] overflow-hidden rounded-2xl shadow-neu-light dark:shadow-neu-dark group">
                         <iframe
                           src={`${activeStage.subExpertise.video}${isVideoPlaying ? '&autoplay=1' : ''}`}
                           title={`${activeStage.subExpertise.organization} video`}
@@ -1070,22 +842,22 @@ const Expertise = () => {
           </motion.div>
         </div>
 
-        <div className="w-full max-w-[1600px] mx-auto pt-2.5 flex items-center justify-between text-xs text-gray-500">
+        <div className="w-full max-w-[1600px] mx-auto pt-2.5 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
           <div className="flex items-center gap-3">
-            <span className="font-semibold">Expertise Progress:</span>
-            <div className="w-36 sm:w-60 h-2 rounded-full bg-gray-300/60 dark:bg-gray-700/60 overflow-hidden">
+            <span className="font-semibold text-gray-700 dark:text-gray-300">Expertise Progress:</span>
+            <div className="w-36 sm:w-64 h-3 rounded-full bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed overflow-hidden p-0.5 flex items-center">
               <motion.div
-                className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                className="h-full rounded-full bg-black dark:bg-light-bg shadow-neu-light-sm dark:shadow-neu-dark-sm"
                 style={{ width: `${((activeStageIndex + 1) / expertiseStages.length) * 100}%` }}
                 transition={{ duration: 0.15 }}
               />
             </div>
-            <span className="font-extrabold text-blue-600 dark:text-blue-400">
+            <span className="font-bold text-black dark:text-white">
               {Math.round(((activeStageIndex + 1) / expertiseStages.length) * 100)}%
             </span>
           </div>
 
-          <span className="font-bold hidden sm:inline">
+          <span className="font-bold hidden sm:inline text-gray-700 dark:text-gray-300">
             {activeStageIndex < expertiseStages.length - 1
               ? `Next: ${expertiseStages[activeStageIndex + 1].subExpertise?.organization || traits[expertiseStages[activeStageIndex + 1].traitIndex].title}`
               : 'All main expertise stages complete · Ventures next'}

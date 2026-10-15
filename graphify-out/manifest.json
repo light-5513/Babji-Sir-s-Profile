@@ -66,10 +66,10 @@
     "semantic_hash": "22d8df904987fabb22af73552417159a"
   },
   "src/sections/About.jsx": {
-    "mtime": 1791368366.4109757,
-    "seen": 1792011909.221712,
-    "ast_hash": "e15c7bc1fe4be29fc3631f2309defe06",
-    "semantic_hash": "e15c7bc1fe4be29fc3631f2309defe06"
+    "mtime": 1792033699.2285123,
+    "seen": 1792036755.0044494,
+    "ast_hash": "37c7200cd18c37cf596496a8185b0cba",
+    "semantic_hash": "37c7200cd18c37cf596496a8185b0cba"
   },
   "src/sections/Contact.jsx": {
     "mtime": 1792006382.5628836,
@@ -78,34 +78,34 @@
     "semantic_hash": "e44e05301bfbbccfdeebd9dd969dac7b"
   },
   "src/sections/Expertise.jsx": {
-    "mtime": 1792029052.5869982,
-    "seen": 1792029524.1153996,
-    "ast_hash": "0ee011d011c593efbbaf5a6b340c02a3",
-    "semantic_hash": "0ee011d011c593efbbaf5a6b340c02a3"
+    "mtime": 1792033421.4880764,
+    "seen": 1792036755.0044494,
+    "ast_hash": "75541f12cec1005b359557acf9371f96",
+    "semantic_hash": "75541f12cec1005b359557acf9371f96"
   },
   "src/sections/Home.jsx": {
-    "mtime": 1792006307.5832863,
-    "seen": 1792011909.221712,
-    "ast_hash": "7c3d8c0c20642ea5271e6df92c05e2a2",
-    "semantic_hash": "7c3d8c0c20642ea5271e6df92c05e2a2"
+    "mtime": 1792033226.864496,
+    "seen": 1792036755.0044494,
+    "ast_hash": "b9652666b566867c21b2d25938b31b72",
+    "semantic_hash": "b9652666b566867c21b2d25938b31b72"
   },
   "src/sections/Media.jsx": {
-    "mtime": 1792006370.8852372,
-    "seen": 1792011909.221712,
-    "ast_hash": "07feabf77e5b56d0d73a551490ed8bc5",
-    "semantic_hash": "07feabf77e5b56d0d73a551490ed8bc5"
+    "mtime": 1792036197.7655287,
+    "seen": 1792036755.0044494,
+    "ast_hash": "23e6de7009358671fbf79bf552a60660",
+    "semantic_hash": "23e6de7009358671fbf79bf552a60660"
   },
   "src/sections/Testimonials.jsx": {
-    "mtime": 1791365877.862118,
-    "seen": 1792011909.221712,
-    "ast_hash": "6e5b912f1e95e04472fbbc7f715492b3",
-    "semantic_hash": "6e5b912f1e95e04472fbbc7f715492b3"
+    "mtime": 1792031832.9692836,
+    "seen": 1792036755.0044494,
+    "ast_hash": "0ca58606c6dd3d062ce0302ff86556cb",
+    "semantic_hash": "0ca58606c6dd3d062ce0302ff86556cb"
   },
   "src/sections/Ventures.jsx": {
-    "mtime": 1791365775.7552688,
-    "seen": 1792011909.221712,
-    "ast_hash": "1b4dd5185287b64f8ec6ed32e9f7b13d",
-    "semantic_hash": "1b4dd5185287b64f8ec6ed32e9f7b13d"
+    "mtime": 1792033438.685318,
+    "seen": 1792036755.0044494,
+    "ast_hash": "7bb6fa32babddb4c8021f34f78a295ee",
+    "semantic_hash": "7bb6fa32babddb4c8021f34f78a295ee"
   },
   "tailwind.config.js": {
     "mtime": 1791361535.0655596,
@@ -114,10 +114,10 @@
     "semantic_hash": "6cc85fca710c0b25965c6d066603af33"
   },
   "vite.config.js": {
-    "mtime": 1791282085.0634992,
-    "seen": 1792011909.221712,
-    "ast_hash": "9bf09b6d97edba4eebf0fe93baaad662",
-    "semantic_hash": "9bf09b6d97edba4eebf0fe93baaad662"
+    "mtime": 1792033811.6088839,
+    "seen": 1792036755.0054924,
+    "ast_hash": "f47ee73e5e33cc545889a5ef3338d627",
+    "semantic_hash": "f47ee73e5e33cc545889a5ef3338d627"
   },
   "index.html": {
     "mtime": 1791351227.3754256,
@@ -1283,12 +1283,6 @@
     "ast_hash": "da2a0c6b19d047b64529c993b743cc42",
     "semantic_hash": ""
   },
-  "public/partners/redhat.webp": {
-    "mtime": 1791044733.3628042,
-    "seen": 1792011909.2227075,
-    "ast_hash": "436d1271f9afc5c7cc7b58b0c12cdbc6",
-    "semantic_hash": ""
-  },
   "public/partners/sno_partner-network-logo.png": {
     "mtime": 1790604522.1858797,
     "seen": 1792011909.2227075,
@@ -1306,5 +1300,17 @@
     "seen": 1792011909.2227075,
     "ast_hash": "ef7b89ef3a9d8ba126efd4296611b2be",
     "semantic_hash": ""
+  },
+  "public/Gitex/WhatsApp Video 2026-10-14 at 12.34.59 PM.mp4": {
+    "mtime": 1791977630.3665223,
+    "seen": 1792036755.0054924,
+    "ast_hash": "5db5af75f653f08f96975891a8b0692f",
+    "semantic_hash": "5db5af75f653f08f96975891a8b0692f"
+  },
+  "public/assets/gitex/WhatsApp Video 2026-10-14 at 12.34.59 PM.mp4": {
+    "mtime": 1791977630.3665223,
+    "seen": 1792036755.0054924,
+    "ast_hash": "5db5af75f653f08f96975891a8b0692f",
+    "semantic_hash": "5db5af75f653f08f96975891a8b0692f"
   }
 }
