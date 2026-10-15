@@ -5,33 +5,33 @@ import Card from '../components/Card';
 const TimelineItem = ({ year, title, description, isLast, index }) => {
   const isEven = index % 2 === 0;
   return (
-  <div className="relative pl-8 md:pl-0">
+  <div className="relative pl-7 sm:pl-8 md:pl-0">
     {!isLast && (
       <div className="hidden md:block absolute top-16 left-1/2 w-0.5 h-full bg-gray-200 dark:bg-gray-800 -translate-x-1/2"></div>
     )}
     {!isLast && (
-      <div className="md:hidden absolute top-10 left-[11px] w-0.5 h-full bg-gray-200 dark:bg-gray-800"></div>
+      <div className="md:hidden absolute top-8 left-[9px] sm:left-[11px] w-0.5 h-full bg-gray-200 dark:bg-gray-800"></div>
     )}
     
-    <div className="md:grid md:grid-cols-2 md:gap-12 items-center relative z-10 mb-12">
+    <div className="md:grid md:grid-cols-2 md:gap-12 items-center relative z-10 mb-8 sm:mb-12">
       <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full neu-sphere-light dark:neu-sphere-dark items-center justify-center">
         <div className="w-2 h-2 rounded-full bg-black dark:bg-light-bg"></div>
       </div>
       
-      <div className="md:hidden absolute left-0 top-6 w-6 h-6 rounded-full neu-sphere-light dark:neu-sphere-dark flex items-center justify-center">
-        <div className="w-2 h-2 rounded-full bg-black dark:bg-light-bg"></div>
+      <div className="md:hidden absolute left-0 top-3 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 rounded-full neu-sphere-light dark:neu-sphere-dark flex items-center justify-center">
+        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-black dark:bg-light-bg"></div>
       </div>
 
       <div className={`${isEven ? 'md:order-1 md:text-right' : 'md:order-2 md:text-left'}`}>
-        <div className="inline-block px-6 py-3 rounded-full neu-sphere-light dark:neu-sphere-dark text-xl font-bold mb-4">
+        <div className="inline-block px-4 sm:px-6 py-1.5 sm:py-3 rounded-full neu-sphere-light dark:neu-sphere-dark text-base sm:text-xl font-bold mb-3 sm:mb-4 shadow-neu-light dark:shadow-neu-dark">
           {year}
         </div>
       </div>
       
       <div className={`${isEven ? 'md:order-2' : 'md:order-1 md:text-right'}`}>
-        <Card className="hover:-translate-y-2">
-          <h3 className="text-2xl font-bold mb-2">{title}</h3>
-          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+        <Card className="hover:-translate-y-1 sm:hover:-translate-y-2 transition-transform">
+          <h3 className="text-xl sm:text-2xl font-bold mb-2">{title}</h3>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
             {description}
           </p>
         </Card>
@@ -66,16 +66,16 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-10 sm:mb-16 max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">The Journey</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">The Journey</h2>
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
             For nearly a decade, I have been dedicated to transforming the educational landscape. From founding Technical Hub to launching Torii Minds, the goal remains the same: empowering talent and delivering world-class technological solutions.
           </p>
         </motion.div>
