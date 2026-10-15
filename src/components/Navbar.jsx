@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from './ThemeContext';
 
 const NavLinks = [
   { name: 'Home', href: '#home' },
@@ -15,6 +16,8 @@ const NavLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -42,38 +45,53 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Toggle Button */}
-        <motion.button 
-          whileTap={{ scale: 0.92 }}
-          className="md:hidden p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed text-black dark:text-white transition-all"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={isOpen}
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X size={22} />
-              </motion.div>
+        {/* Mobile Right Controls: Theme Toggle + Menu Hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <motion.button
+            whileTap={{ scale: 0.92 }}
+            onClick={toggleTheme}
+            className="p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed text-black dark:text-white transition-all flex items-center justify-center"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? (
+              <Sun size={20} className="text-yellow-500" />
             ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Menu size={22} />
-              </motion.div>
+              <Moon size={20} className="text-purple-400" />
             )}
-          </AnimatePresence>
-        </motion.button>
+          </motion.button>
+
+          <motion.button 
+            whileTap={{ scale: 0.92 }}
+            className="p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed text-black dark:text-white transition-all"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={22} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={22} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </div>
       </div>
 
       {/* Mobile Nav Menu with Animation */}
@@ -101,6 +119,19 @@ const Navbar = () => {
                   <span className="text-xs text-gray-500 font-mono">0{idx + 1}</span>
                 </motion.a>
               ))}
+
+              <div className="pt-2">
+                <button
+                  onClick={toggleTheme}
+                  className="w-full text-base font-semibold p-3.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed text-black dark:text-white transition-all flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-2">
+                    {theme === 'light' ? <Sun size={18} className="text-yellow-500" /> : <Moon size={18} className="text-purple-400" />}
+                    <span>{theme === 'light' ? 'Light Theme Active' : 'Dark Theme Active'}</span>
+                  </span>
+                  <span className="text-xs text-gray-500 font-mono">Switch</span>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

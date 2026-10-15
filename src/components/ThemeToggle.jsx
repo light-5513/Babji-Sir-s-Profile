@@ -6,7 +6,7 @@ const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="fixed top-1/2 -right-5 sm:-right-4 -translate-y-1/2 z-40 scale-[0.68] sm:scale-75 origin-right select-none">
+    <div className="hidden lg:block fixed top-1/2 -right-4 -translate-y-1/2 z-40 scale-75 origin-right select-none">
       <div className="switch-container -rotate-90">
         <input 
           className="toggle-checkbox" 

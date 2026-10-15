@@ -12,12 +12,12 @@ import Contact from './sections/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden">
       <Navbar />
       <ThemeToggle />
       <AIAgentButton />
       
-      <main>
+      <main className="w-full max-w-full overflow-x-hidden">
         <Home />
         <About />
         <Expertise />

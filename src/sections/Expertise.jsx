@@ -489,12 +489,12 @@ const Expertise = () => {
     <section
       id="expertise"
       ref={containerRef}
-      className="relative w-full scroll-mt-16 sm:scroll-mt-20 min-h-[calc(100svh-4rem)] sm:min-h-[calc(100svh-5rem)]"
+      className="relative w-full scroll-mt-14 sm:scroll-mt-16 md:scroll-mt-20 min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] md:min-h-[calc(100svh-5rem)]"
     >
       <div 
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="sticky top-16 sm:top-20 h-[calc(100svh-4rem)] sm:h-[calc(100svh-5rem)] w-full flex flex-col justify-between p-3 sm:p-5 md:p-6 lg:p-8 overflow-hidden bg-light-bg dark:bg-dark-bg transition-colors duration-300"
+        className="sticky top-14 sm:top-16 md:top-20 h-[calc(100svh-3.5rem)] sm:h-[calc(100svh-4rem)] md:h-[calc(100svh-5rem)] w-full flex flex-col justify-between p-2.5 sm:p-4 md:p-6 lg:p-8 overflow-hidden bg-light-bg dark:bg-dark-bg transition-colors duration-300"
       >
         {/* Top Controls Bar */}
         <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between gap-2 sm:gap-4 pb-2">
@@ -506,13 +506,13 @@ const Expertise = () => {
           </div>
 
           {/* Trait Pills - Horizontally scrollable on mobile, flex on desktop */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 px-1 max-w-[calc(100vw-145px)] sm:max-w-none">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 px-1 flex-1 min-w-0">
             {traits.map((trait, index) => (
               <button
                 key={trait.id}
                 onClick={() => scrollToTrait(index)}
                 aria-pressed={index === activeTraitIndex}
-                className={`flex-shrink-0 whitespace-nowrap rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold transition-all duration-300 ${
+                className={`flex-shrink-0 whitespace-nowrap rounded-xl px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold transition-all duration-300 ${
                   index === activeTraitIndex
                     ? 'bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-pressed dark:shadow-neu-dark-pressed scale-[0.98]'
                     : 'bg-light-bg dark:bg-dark-bg text-gray-700 dark:text-gray-300 shadow-neu-light-sm dark:shadow-neu-dark-sm hover:shadow-neu-light-pressed dark:hover:shadow-neu-dark-pressed hover:-translate-y-0.5'
@@ -547,7 +547,7 @@ const Expertise = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="w-full max-w-[1600px] mx-auto grid flex-1 min-h-0 lg:grid-cols-12 gap-4 lg:gap-10 items-stretch py-2 sm:py-3 overflow-hidden">
+        <div className="w-full max-w-[1600px] mx-auto grid flex-1 min-h-0 lg:grid-cols-12 gap-3 lg:gap-10 items-stretch py-1 sm:py-3 overflow-hidden">
           {/* Desktop Left Pillar Card */}
           <div className="hidden lg:flex lg:col-span-5 h-full items-center pr-4">
             <motion.div
@@ -616,10 +616,10 @@ const Expertise = () => {
             className="w-full lg:col-span-7 h-full min-h-0 flex flex-col justify-start lg:justify-center overflow-y-auto no-scrollbar"
           >
             {/* Mobile Compact Pillar Header */}
-            <div className="lg:hidden flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm mb-2.5 flex-shrink-0">
+            <div className="lg:hidden flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm mb-2 flex-shrink-0">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white flex-shrink-0">
-                  {React.createElement(activeTrait.icon, { size: 16 })}
+                <div className="p-1.5 sm:p-2 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white flex-shrink-0">
+                  {React.createElement(activeTrait.icon, { size: 15 })}
                 </div>
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 block leading-tight">
@@ -637,12 +637,12 @@ const Expertise = () => {
               )}
             </div>
 
-            <div className={`flex-1 min-h-0 flex flex-col justify-center py-2 sm:py-6 ${activeStage.subExpertise?.centered ? 'items-center text-center px-1 sm:px-4' : 'pl-1 sm:pl-5 md:pl-8'}`}>
+            <div className={`flex-1 min-h-0 flex flex-col justify-center py-1 sm:py-4 md:py-6 ${activeStage.subExpertise?.centered ? 'items-center text-center px-1 sm:px-4' : 'pl-0 sm:pl-5 md:pl-8'}`}>
               {activeStage.subExpertise && (
-                <div className="space-y-3 sm:space-y-4 w-full">
+                <div className="space-y-2 sm:space-y-3 md:space-y-4 w-full">
                     {ActiveSubExpertiseIcon && (
-                      <div className="inline-flex p-3 sm:p-4 rounded-full neu-sphere-light dark:neu-sphere-dark shadow-neu-light-sm dark:shadow-neu-dark-sm mb-1 sm:mb-2 text-black dark:text-white">
-                        <ActiveSubExpertiseIcon size={32} className="sm:w-9 sm:h-9" strokeWidth={1.75} />
+                      <div className="inline-flex p-2.5 sm:p-4 rounded-full neu-sphere-light dark:neu-sphere-dark shadow-neu-light-sm dark:shadow-neu-dark-sm mb-0.5 sm:mb-2 text-black dark:text-white">
+                        <ActiveSubExpertiseIcon size={26} className="sm:w-9 sm:h-9" strokeWidth={1.75} />
                       </div>
                     )}
                     {activeStage.subExpertise.logo && (
@@ -650,36 +650,36 @@ const Expertise = () => {
                         src={activeStage.subExpertise.logo}
                         alt={`${activeStage.subExpertise.organization} logo`}
                         className={activeStage.subExpertise.logoSize === 'large'
-                          ? `h-32 sm:h-48 lg:h-64 w-auto max-w-full object-contain ${activeStage.subExpertise.centered ? 'object-center mx-auto' : 'object-left'} ${activeStage.subExpertise.logoBlend || ''}`
-                          : `h-14 sm:h-20 lg:h-24 w-auto max-w-full object-contain ${activeStage.subExpertise.centered ? 'object-center mx-auto' : 'object-left'}`}
+                          ? `h-16 sm:h-28 md:h-36 lg:h-56 w-auto max-w-full object-contain ${activeStage.subExpertise.centered ? 'object-center mx-auto' : 'object-left'} ${activeStage.subExpertise.logoBlend || ''}`
+                          : `h-10 sm:h-14 md:h-18 lg:h-24 w-auto max-w-full object-contain ${activeStage.subExpertise.centered ? 'object-center mx-auto' : 'object-left'}`}
                       />
                     )}
                     {activeStage.subExpertise.logos?.length > 0 && (
-                      <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-6">
                         {activeStage.subExpertise.logos.map((logo) => (
                           <img
                             key={logo.name}
                             src={logo.src}
                             alt={logo.name}
                             title={logo.name}
-                            className={logo.size === 'large' ? 'h-32 sm:h-48 w-auto max-w-full object-contain object-center' : 'h-24 sm:h-36 w-auto max-w-full object-contain object-center'}
+                            className={logo.size === 'large' ? 'h-24 sm:h-40 w-auto max-w-full object-contain object-center' : 'h-16 sm:h-28 w-auto max-w-full object-contain object-center'}
                             loading="lazy"
                           />
                         ))}
                       </div>
                     )}
                     {(!activeStage.subExpertise.logo || activeStage.subExpertise.showOrganizationWithLogo) && !activeStage.subExpertise.imageCard && (
-                      <h3 className={`text-2xl sm:text-4xl lg:text-5xl font-black text-black dark:text-white leading-tight ${activeStage.subExpertise.centered ? 'w-full text-center' : ''}`}>
+                      <h3 className={`text-2xl sm:text-3xl lg:text-5xl font-black text-black dark:text-white leading-tight break-words ${activeStage.subExpertise.centered ? 'w-full text-center' : ''}`}>
                         {activeStage.subExpertise.organization}
                       </h3>
                     )}
                     {activeStage.subExpertise.role && !activeStage.subExpertise.imageCard && (
-                      <p className="text-base sm:text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-200 tracking-tight leading-snug">
+                      <p className="text-sm sm:text-lg lg:text-2xl font-bold text-gray-800 dark:text-gray-200 tracking-tight leading-snug break-words">
                         {activeStage.subExpertise.role}
                       </p>
                     )}
                     {activeStage.subExpertise.headline && (
-                      <p className="text-base sm:text-xl lg:text-2xl font-bold text-black dark:text-white leading-snug">
+                      <p className="text-sm sm:text-lg lg:text-2xl font-bold text-black dark:text-white leading-snug break-words">
                         {activeStage.subExpertise.headline}
                       </p>
                     )}
@@ -698,16 +698,16 @@ const Expertise = () => {
                       </div>
                     )}
                     {activeStage.subExpertise.description && !activeStage.subExpertise.imageCard && (
-                      <p className="text-sm sm:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                      <p className="text-sm sm:text-base lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed break-words">
                         {activeStage.subExpertise.description}
                       </p>
                     )}
                     {activeStage.subExpertise.impact && (
-                      <div className="mt-2.5 sm:mt-4 max-w-3xl p-3.5 sm:p-5 rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed space-y-1">
+                      <div className="mt-2.5 sm:mt-4 max-w-3xl p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed space-y-1">
                         <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                           Core Impact
                         </p>
-                        <p className="text-xs sm:text-base lg:text-lg font-medium text-gray-800 dark:text-gray-200 leading-normal">
+                        <p className="text-xs sm:text-sm lg:text-lg font-medium text-gray-800 dark:text-gray-200 leading-relaxed break-words">
                           {activeStage.subExpertise.impact}
                         </p>
                       </div>
@@ -855,10 +855,10 @@ const Expertise = () => {
                                     key={`${copy}-${image}`}
                                     src={image}
                                     alt={copy === 0 ? `${activeStage.subExpertise.organization} image ${index + 1}` : ''}
-                                    className={`aspect-video w-64 sm:w-96 flex-shrink-0 rounded-xl shadow-neu-light-sm dark:shadow-neu-dark-sm ${
+                                    className={`aspect-video w-48 sm:w-80 lg:w-96 flex-shrink-0 rounded-xl shadow-neu-light-sm dark:shadow-neu-dark-sm ${
                                       activeStage.subExpertise.imagesFit === 'contain'
                                         ? 'object-contain'
-                                        : 'object-cover sm:w-[28rem] lg:w-[40rem]'
+                                        : 'object-cover sm:w-[24rem] lg:w-[36rem]'
                                     }`}
                                     loading="lazy"
                                   />
