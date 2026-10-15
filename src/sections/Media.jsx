@@ -46,6 +46,13 @@ const Media = () => {
     },
   ];
 
+  const gitexImages = [
+    '/Gitex/gitex-1.jpeg',
+    '/Gitex/gitex-2.jpeg',
+    '/Gitex/gitex-3.jpeg',
+    '/Gitex/gitex-4.jpeg',
+  ];
+
   return (
     <section id="media" className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -125,6 +132,53 @@ const Media = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* GITEX Global Scrolling Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+                Global Showcase
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold mt-1">GITEX Global Exhibition</h3>
+            </div>
+          </div>
+
+          <div 
+            className="drive-ready-gallery w-full rounded-3xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed p-4 sm:p-5 bg-gray-50/50 dark:bg-gray-900/40"
+            role="region"
+            aria-label="GITEX Global gallery"
+          >
+            <div className="drive-ready-gallery-track">
+              {[0, 1].map((copy) => (
+                <div
+                  key={copy}
+                  className="drive-ready-gallery-group gap-5"
+                  aria-hidden={copy === 1 ? 'true' : undefined}
+                >
+                  {gitexImages.map((img, idx) => (
+                    <div
+                      key={`${copy}-${idx}`}
+                      className="h-56 sm:h-64 w-80 sm:w-96 flex-shrink-0 overflow-hidden rounded-2xl shadow-neu-light dark:shadow-neu-dark bg-white dark:bg-gray-800"
+                    >
+                      <img
+                        src={img}
+                        alt={`GITEX Global ${idx + 1}`}
+                        className="h-full w-full object-cover hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
