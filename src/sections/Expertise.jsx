@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useExpertiseScroll from '../hooks/useExpertiseScroll';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { 
   GraduationCap, 
   Award, 
@@ -428,9 +428,39 @@ const expertiseStages = traits.flatMap((trait, traitIndex) => {
   return [{ traitIndex, subExpertise: null, subIndex: 0, subTotal: 0 }];
 });
 
+const slideVariants = {
+  enter: (dir) => ({
+    x: dir > 0 ? 36 : -36,
+    opacity: 0,
+    scale: 0.985,
+    filter: 'blur(3px)',
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (dir) => ({
+    x: dir > 0 ? -36 : 36,
+    opacity: 0,
+    scale: 0.985,
+    filter: 'blur(3px)',
+    transition: {
+      duration: 0.22,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
 const Expertise = () => {
   const containerRef = useRef(null);
   const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
@@ -444,8 +474,16 @@ const Expertise = () => {
     activeStageIndexRef.current = activeStageIndex;
   }, [activeStageIndex]);
 
+  const handleStageChange = (nextIndex, dir) => {
+    const current = activeStageIndexRef.current;
+    const computedDir = dir !== undefined ? dir : (nextIndex >= current ? 1 : -1);
+    setDirection(computedDir);
+    activeStageIndexRef.current = nextIndex;
+    setActiveStageIndex(nextIndex);
+  };
+
   const scrollToStage = useExpertiseScroll(
-    containerRef, activeStageIndexRef, setActiveStageIndex, expertiseStages.length
+    containerRef, activeStageIndexRef, handleStageChange, expertiseStages.length
   );
 
   const scrollToTrait = (targetTraitIndex) => {
@@ -550,92 +588,99 @@ const Expertise = () => {
         <div className="w-full max-w-[1600px] mx-auto grid flex-1 min-h-0 lg:grid-cols-12 gap-3 lg:gap-10 items-stretch py-1 sm:py-3 overflow-hidden">
           {/* Desktop Left Pillar Card */}
           <div className="hidden lg:flex lg:col-span-5 h-full items-center pr-4">
-            <motion.div
-              key={activeTrait.id}
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: 'easeOut' }}
-              className="w-full rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark p-6 sm:p-8 space-y-5 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3.5 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm">
-                  {React.createElement(activeTrait.icon, { size: 24 })}
-                </div>
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    Main Expertise · Pillar {activeTrait.number} of {traits.length}
-                  </span>
-                  <h2 className="mt-1 text-3xl sm:text-4xl font-extrabold text-black dark:text-white">
-                    {activeTrait.title}
-                  </h2>
-                </div>
-              </div>
-
-              <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {activeTrait.domain}
-              </p>
-
-              {activeTrait.periods?.length > 0 && (
-                <div className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    {activeTrait.periodLabel}
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {activeTrait.periods.map((period) => (
-                      <span key={period} className="inline-block px-3.5 py-1.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200">
-                        {period}
-                      </span>
-                    ))}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTrait.id}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -14, scale: 0.98 }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full rounded-2xl bg-light-bg dark:bg-dark-bg shadow-neu-light dark:shadow-neu-dark p-6 sm:p-8 space-y-5 transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3.5 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm">
+                    {React.createElement(activeTrait.icon, { size: 24 })}
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Main Expertise · Pillar {activeTrait.number} of {traits.length}
+                    </span>
+                    <h2 className="mt-1 text-3xl sm:text-4xl font-extrabold text-black dark:text-white">
+                      {activeTrait.title}
+                    </h2>
                   </div>
                 </div>
-              )}
 
-              {activeTrait.subExpertiseHeading && (
-                <p className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
-                  {activeTrait.subExpertiseHeading}
+                <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                  {activeTrait.domain}
                 </p>
-              )}
 
-              {activeTrait.id === 'teaching' && (
-                <div className="grid gap-4 sm:grid-cols-2 pt-2">
-                  <div className="p-4 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Started</span>
-                    <p className="mt-1 text-sm font-semibold text-gray-800 dark:text-gray-200">August 1997 · APTECH, Lab Technician</p>
+                {activeTrait.periods?.length > 0 && (
+                  <div className="space-y-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      {activeTrait.periodLabel}
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {activeTrait.periods.map((period) => (
+                        <span key={period} className="inline-block px-3.5 py-1.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200">
+                          {period}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </motion.div>
+                )}
+
+                {activeTrait.subExpertiseHeading && (
+                  <p className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
+                    {activeTrait.subExpertiseHeading}
+                  </p>
+                )}
+
+                {activeTrait.id === 'teaching' && (
+                  <div className="grid gap-4 sm:grid-cols-2 pt-2">
+                    <div className="p-4 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Started</span>
+                      <p className="mt-1 text-sm font-semibold text-gray-800 dark:text-gray-200">August 1997 · APTECH, Lab Technician</p>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Right Column Content - Mobile Scrollable & Adaptive */}
-          <motion.div
-            key={activeStageIndex}
-            initial={prefersReducedMotion ? false : { opacity: 0, x: 14 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.22, ease: 'easeOut' }}
-            className="w-full lg:col-span-7 h-full min-h-0 flex flex-col justify-start lg:justify-center overflow-y-auto no-scrollbar"
-          >
-            {/* Mobile Compact Pillar Header */}
-            <div className="lg:hidden flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm mb-2 flex-shrink-0">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 sm:p-2 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white flex-shrink-0">
-                  {React.createElement(activeTrait.icon, { size: 15 })}
+          <div className="w-full lg:col-span-7 h-full min-h-0 relative flex flex-col justify-start lg:justify-center overflow-hidden">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={activeStageIndex}
+                custom={direction}
+                variants={prefersReducedMotion ? {} : slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="w-full h-full min-h-0 flex flex-col justify-start lg:justify-center overflow-y-auto no-scrollbar"
+              >
+                {/* Mobile Compact Pillar Header */}
+                <div className="lg:hidden flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm mb-2 flex-shrink-0">
+                  <div className="flex items-center gap-2">
+                    <div className="p-1.5 sm:p-2 rounded-full neu-sphere-light dark:neu-sphere-dark text-black dark:text-white flex-shrink-0">
+                      {React.createElement(activeTrait.icon, { size: 15 })}
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 block leading-tight">
+                        Pillar {activeTrait.number} · {activeTrait.title}
+                      </span>
+                      <p className="text-xs font-semibold text-gray-800 dark:text-gray-200 truncate max-w-[210px] sm:max-w-xs leading-tight">
+                        {activeTrait.domain}
+                      </p>
+                    </div>
+                  </div>
+                  {activeTrait.periods?.length > 0 && (
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-gray-800 dark:text-gray-200">
+                      {activeTrait.periods[0]}
+                    </span>
+                  )}
                 </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 block leading-tight">
-                    Pillar {activeTrait.number} · {activeTrait.title}
-                  </span>
-                  <p className="text-xs font-semibold text-gray-800 dark:text-gray-200 truncate max-w-[210px] sm:max-w-xs leading-tight">
-                    {activeTrait.domain}
-                  </p>
-                </div>
-              </div>
-              {activeTrait.periods?.length > 0 && (
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed text-gray-800 dark:text-gray-200">
-                  {activeTrait.periods[0]}
-                </span>
-              )}
-            </div>
 
             <div className={`flex-1 min-h-0 flex flex-col justify-center py-1 sm:py-4 md:py-6 ${activeStage.subExpertise?.centered ? 'items-center text-center px-1 sm:px-4' : 'pl-0 sm:pl-5 md:pl-8'}`}>
               {activeStage.subExpertise && (
@@ -899,7 +944,9 @@ const Expertise = () => {
               )}
             </div>
           </motion.div>
-        </div>
+        </AnimatePresence>
+      </div>
+    </div>
 
         {/* Bottom Progress Footer */}
         <div className="w-full max-w-[1600px] mx-auto pt-2 sm:pt-2.5 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
@@ -909,7 +956,7 @@ const Expertise = () => {
               <motion.div
                 className="h-full rounded-full bg-black dark:bg-light-bg shadow-neu-light-sm dark:shadow-neu-dark-sm"
                 style={{ width: `${((activeStageIndex + 1) / expertiseStages.length) * 100}%` }}
-                transition={{ duration: 0.15 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               />
             </div>
             <span className="font-bold text-black dark:text-white text-[11px] sm:text-xs">

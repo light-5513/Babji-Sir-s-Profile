@@ -1,0 +1,1322 @@
+{
+  "package.json": {
+    "mtime": 1791366415.14248,
+    "seen": 1792011909.221712,
+    "ast_hash": "fd5daa95f6e056bd9cf7feeaec4aa79e",
+    "semantic_hash": "fd5daa95f6e056bd9cf7feeaec4aa79e"
+  },
+  "postcss.config.js": {
+    "mtime": 1791282087.0940025,
+    "seen": 1792011909.221712,
+    "ast_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0",
+    "semantic_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0"
+  },
+  "src/App.jsx": {
+    "mtime": 1792042790.9838266,
+    "seen": 1792043859.2657547,
+    "ast_hash": "2d24614f3066bff9c9855c6f3828d024",
+    "semantic_hash": "2d24614f3066bff9c9855c6f3828d024"
+  },
+  "src/components/AIAgentButton.jsx": {
+    "mtime": 1792042775.9705343,
+    "seen": 1792043859.2657547,
+    "ast_hash": "7b88870121916e5dfee87a56dcd7d16d",
+    "semantic_hash": "7b88870121916e5dfee87a56dcd7d16d"
+  },
+  "src/components/Button.jsx": {
+    "mtime": 1792041514.221411,
+    "seen": 1792043859.2657547,
+    "ast_hash": "fa97c6d4249baf6f996516cbda037664",
+    "semantic_hash": "fa97c6d4249baf6f996516cbda037664"
+  },
+  "src/components/Card.jsx": {
+    "mtime": 1792041507.946464,
+    "seen": 1792043859.2657547,
+    "ast_hash": "5b294c51672250be3949e9e703613140",
+    "semantic_hash": "5b294c51672250be3949e9e703613140"
+  },
+  "src/components/Navbar.jsx": {
+    "mtime": 1792042677.7234101,
+    "seen": 1792043859.2657547,
+    "ast_hash": "f68e85216c482580671e5c5e5599e938",
+    "semantic_hash": "f68e85216c482580671e5c5e5599e938"
+  },
+  "src/components/ThemeContext.jsx": {
+    "mtime": 1791351227.3493867,
+    "seen": 1792011909.221712,
+    "ast_hash": "2fd399102b173b81d4b5988daaf7cb77",
+    "semantic_hash": "2fd399102b173b81d4b5988daaf7cb77"
+  },
+  "src/components/ThemeToggle.jsx": {
+    "mtime": 1792042639.3040037,
+    "seen": 1792043859.2667549,
+    "ast_hash": "1e948650c5df7f7f5f70c42dbb5f97b2",
+    "semantic_hash": "1e948650c5df7f7f5f70c42dbb5f97b2"
+  },
+  "src/components/ToriiLogo.jsx": {
+    "mtime": 1791351227.3532443,
+    "seen": 1792011909.221712,
+    "ast_hash": "2f4bd01451ecd1d53a2a84422f49379d",
+    "semantic_hash": "2f4bd01451ecd1d53a2a84422f49379d"
+  },
+  "src/main.jsx": {
+    "mtime": 1791351227.374371,
+    "seen": 1792011909.221712,
+    "ast_hash": "22d8df904987fabb22af73552417159a",
+    "semantic_hash": "22d8df904987fabb22af73552417159a"
+  },
+  "src/sections/About.jsx": {
+    "mtime": 1792041556.780136,
+    "seen": 1792043859.2687564,
+    "ast_hash": "83914d0f2d2ab363e9256493df7a6f8b",
+    "semantic_hash": "83914d0f2d2ab363e9256493df7a6f8b"
+  },
+  "src/sections/Contact.jsx": {
+    "mtime": 1792041658.0974188,
+    "seen": 1792043859.2687564,
+    "ast_hash": "60362e6c2c127f93765ec908a1007f33",
+    "semantic_hash": "60362e6c2c127f93765ec908a1007f33"
+  },
+  "src/sections/Expertise.jsx": {
+    "mtime": 1792043523.4201336,
+    "seen": 1792043859.2687564,
+    "ast_hash": "71083ac0b6fca2b120f512efdc6fd41b",
+    "semantic_hash": "71083ac0b6fca2b120f512efdc6fd41b"
+  },
+  "src/sections/Home.jsx": {
+    "mtime": 1792041302.5050726,
+    "seen": 1792043859.2687564,
+    "ast_hash": "7708cdee3d4d1116ad3fe9520033d3ed",
+    "semantic_hash": "7708cdee3d4d1116ad3fe9520033d3ed"
+  },
+  "src/sections/Media.jsx": {
+    "mtime": 1792041611.6542044,
+    "seen": 1792043859.2687564,
+    "ast_hash": "ed315114ae7b097f8a4a81f03e19088e",
+    "semantic_hash": "ed315114ae7b097f8a4a81f03e19088e"
+  },
+  "src/sections/Testimonials.jsx": {
+    "mtime": 1792041630.689468,
+    "seen": 1792043859.2687564,
+    "ast_hash": "d8e2227db2745bb0909fd7096fad56e7",
+    "semantic_hash": "d8e2227db2745bb0909fd7096fad56e7"
+  },
+  "src/sections/Ventures.jsx": {
+    "mtime": 1792041583.849581,
+    "seen": 1792043859.2687564,
+    "ast_hash": "8daee8fd5547f0f6c0ef84847ad86551",
+    "semantic_hash": "8daee8fd5547f0f6c0ef84847ad86551"
+  },
+  "tailwind.config.js": {
+    "mtime": 1791361535.0655596,
+    "seen": 1792011909.221712,
+    "ast_hash": "6cc85fca710c0b25965c6d066603af33",
+    "semantic_hash": "6cc85fca710c0b25965c6d066603af33"
+  },
+  "vite.config.js": {
+    "mtime": 1792033811.6088839,
+    "seen": 1792036755.0054924,
+    "ast_hash": "f47ee73e5e33cc545889a5ef3338d627",
+    "semantic_hash": "f47ee73e5e33cc545889a5ef3338d627"
+  },
+  "index.html": {
+    "mtime": 1791351227.3754256,
+    "seen": 1792011909.221712,
+    "ast_hash": "73889d5efad6658fad1b9f4597a76b93",
+    "semantic_hash": ""
+  },
+  "public/Babji Sir.png": {
+    "mtime": 1791023977.1169186,
+    "seen": 1792011909.221712,
+    "ast_hash": "2589e063d8744b7cd39beba658ca8231",
+    "semantic_hash": ""
+  },
+  "public/assets/02a_Java_Foundations_Associate.png": {
+    "mtime": 1790338659.9988296,
+    "seen": 1792011909.221712,
+    "ast_hash": "69f1fa0c0afa01b3f5501fb2a5641047",
+    "semantic_hash": ""
+  },
+  "public/assets/16k+.jpg": {
+    "mtime": 1791811314.260273,
+    "seen": 1792011909.221712,
+    "ast_hash": "d2d5985669620e812e09a63e40239d7a",
+    "semantic_hash": ""
+  },
+  "public/assets/AI Ready Engineer AI Logo.png": {
+    "mtime": 1791034287.021037,
+    "seen": 1792011909.221712,
+    "ast_hash": "49b8be56e17c566e6c8a511d6ba5fe5c",
+    "semantic_hash": ""
+  },
+  "public/assets/AUTOMATION ACADEMY.png": {
+    "mtime": 1791889951.6856642,
+    "seen": 1792011909.221712,
+    "ast_hash": "2edc59bb6a3ca678066fa8d79d987373",
+    "semantic_hash": ""
+  },
+  "public/assets/AWS ACADEMY.png": {
+    "mtime": 1790337510.774568,
+    "seen": 1792011909.221712,
+    "ast_hash": "e6f19024e71f164233674c102a783a86",
+    "semantic_hash": ""
+  },
+  "public/assets/Automation Anywhere.png": {
+    "mtime": 1791701043.073861,
+    "seen": 1792011909.221712,
+    "ast_hash": "b23ee30882ba51a4f84d051309a9be59",
+    "semantic_hash": ""
+  },
+  "public/assets/CadenceUPM.png": {
+    "mtime": 1791977951.33316,
+    "seen": 1792011909.221712,
+    "ast_hash": "5f12accc8644640210618c885148dd26",
+    "semantic_hash": ""
+  },
+  "public/assets/Cisco_Networking_Academy.svg.webp": {
+    "mtime": 1790337494.1978729,
+    "seen": 1792011909.221712,
+    "ast_hash": "2174c7f686203e09612daa5dbdc28d5e",
+    "semantic_hash": ""
+  },
+  "public/assets/Course/Cisco C Programing.png": {
+    "mtime": 1791950974.6207376,
+    "seen": 1792011909.221712,
+    "ast_hash": "9e2ab964ca2de5107916a781f7787ea7",
+    "semantic_hash": ""
+  },
+  "public/assets/Course/Cisco C++ Programing.png": {
+    "mtime": 1791951181.5941443,
+    "seen": 1792011909.221712,
+    "ast_hash": "75e54c982dd9babb7cf0025bb239b4aa",
+    "semantic_hash": ""
+  },
+  "public/assets/Course/DBMS ORACLE.png": {
+    "mtime": 1791951420.5780904,
+    "seen": 1792011909.221712,
+    "ast_hash": "cda7f272c66da0a462689cce5b902e8a",
+    "semantic_hash": ""
+  },
+  "public/assets/Course/OS - Red_Hat_System_Administration_I.png": {
+    "mtime": 1791951248.3171265,
+    "seen": 1792011909.221712,
+    "ast_hash": "ed261ee17773cb987c03214a72641d92",
+    "semantic_hash": ""
+  },
+  "public/assets/Course/OS - Red_Hat_System_Administration_II.png": {
+    "mtime": 1791951291.4501514,
+    "seen": 1792011909.221712,
+    "ast_hash": "911aa676e35b0df756d24f68814b8761",
+    "semantic_hash": ""
+  },
+  "public/assets/HIBI.png": {
+    "mtime": 1791983210.5579526,
+    "seen": 1792011909.221712,
+    "ast_hash": "a3a89a30be2560c66cb72728f38e495c",
+    "semantic_hash": ""
+  },
+  "public/assets/Hub Hoppers 1.jpg": {
+    "mtime": 1791870755.3057353,
+    "seen": 1792011909.221712,
+    "ast_hash": "f39226349099d326102f579584bd0071",
+    "semantic_hash": ""
+  },
+  "public/assets/Hub Hoppers 2.jpg": {
+    "mtime": 1791870802.352732,
+    "seen": 1792011909.221712,
+    "ast_hash": "1d5079918b83daafdbd90f1617978d0c",
+    "semantic_hash": ""
+  },
+  "public/assets/Hub Hoppers 4.jpg": {
+    "mtime": 1791870833.5894303,
+    "seen": 1792011909.221712,
+    "ast_hash": "a10ba09fc53c4efdffd9314daccbcee8",
+    "semantic_hash": ""
+  },
+  "public/assets/J-Path Connect Tech Logo.png": {
+    "mtime": 1791802567.1708732,
+    "seen": 1792011909.221712,
+    "ast_hash": "d4746bd5d398903a26b44b744447de9e",
+    "semantic_hash": ""
+  },
+  "public/assets/MOON CODER.png": {
+    "mtime": 1791881694.1511056,
+    "seen": 1792011909.221712,
+    "ast_hash": "07c3ece0ab5f4469e52be994ef3238d4",
+    "semantic_hash": ""
+  },
+  "public/assets/Myna.png": {
+    "mtime": 1790339447.9738557,
+    "seen": 1792011909.221712,
+    "ast_hash": "417a4660600147c0eccef1d42abbc44c",
+    "semantic_hash": ""
+  },
+  "public/assets/NGI.png": {
+    "mtime": 1791979773.3370607,
+    "seen": 1792011909.221712,
+    "ast_hash": "b529545d65eb5da8a6ec9371af2893b2",
+    "semantic_hash": ""
+  },
+  "public/assets/Oracle_Academy_rgb.png": {
+    "mtime": 1791892408.3797207,
+    "seen": 1792011909.221712,
+    "ast_hash": "1cf69e6f1ae5ffc0fa7dff348f09e320",
+    "semantic_hash": ""
+  },
+  "public/assets/Owl Coder Gradient Mascot Logo.png": {
+    "mtime": 1791105228.259699,
+    "seen": 1792011909.221712,
+    "ast_hash": "6af7d1a85fd13f776515a3fca5a0a264",
+    "semantic_hash": ""
+  },
+  "public/assets/Project Space.png": {
+    "mtime": 1791701703.7324946,
+    "seen": 1792011909.221712,
+    "ast_hash": "e21779f2d684e8a71bf4ccc541e14370",
+    "semantic_hash": ""
+  },
+  "public/assets/QQ MEDIA 2.jpeg": {
+    "mtime": 1791979916.4847918,
+    "seen": 1792011909.221712,
+    "ast_hash": "b504fb479873ab30457ea62c2d7c28d0",
+    "semantic_hash": ""
+  },
+  "public/assets/RHA_Logos_Logo-Red_Hat-Academy-A-Standard-RGB-1024x257.png": {
+    "mtime": 1790337605.758142,
+    "seen": 1792011909.221712,
+    "ast_hash": "b197b25a3f4baae4eae6d2f78c2dccea",
+    "semantic_hash": ""
+  },
+  "public/assets/Ready Engineer AI Logo.png": {
+    "mtime": 1791034287.021037,
+    "seen": 1792011909.221712,
+    "ast_hash": "49b8be56e17c566e6c8a511d6ba5fe5c",
+    "semantic_hash": ""
+  },
+  "public/assets/SKILLUP CODER.png": {
+    "mtime": 1791869673.6621084,
+    "seen": 1792011909.221712,
+    "ast_hash": "4435ea7a24ac3c1788107bef6c93031d",
+    "semantic_hash": ""
+  },
+  "public/assets/ServiceNOW_BIG-ada03f01.png": {
+    "mtime": 1791977455.747258,
+    "seen": 1792011909.221712,
+    "ast_hash": "a6b036ec917db7ddc38a36be03cbfe26",
+    "semantic_hash": ""
+  },
+  "public/assets/Splunk-Logo.png": {
+    "mtime": 1791889746.7512963,
+    "seen": 1792011909.221712,
+    "ast_hash": "4d0f825b8a7ca111c9d81a00708469cd",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (3).jpg": {
+    "mtime": 1791873009.1779296,
+    "seen": 1792011909.221712,
+    "ast_hash": "7175643abed3e020eabd13e3a6fbf708",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (4).jpg": {
+    "mtime": 1791873009.2148933,
+    "seen": 1792011909.221712,
+    "ast_hash": "4e865d22601bc0056baf1d9d630ca255",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (5).jpg": {
+    "mtime": 1791873008.9069028,
+    "seen": 1792011909.221712,
+    "ast_hash": "fd28bf55b2cf7b900664607ee3aef606",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (6).jpg": {
+    "mtime": 1791873008.9322863,
+    "seen": 1792011909.221712,
+    "ast_hash": "49aa72a713ba6d0766da0c05d99d90bf",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (7).jpg": {
+    "mtime": 1791873008.9412553,
+    "seen": 1792011909.221712,
+    "ast_hash": "6865b6ea21aead4a8b00c22a1c8efbb2",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (8).jpg": {
+    "mtime": 1791873008.9582655,
+    "seen": 1792011909.221712,
+    "ast_hash": "55d2af949f18fd344f39a8efac6707a9",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square (9).jpg": {
+    "mtime": 1791873008.9761376,
+    "seen": 1792011909.221712,
+    "ast_hash": "86610077f96dcf3325f0b8c804977a7f",
+    "semantic_hash": ""
+  },
+  "public/assets/T Square.jpg": {
+    "mtime": 1791873009.0585454,
+    "seen": 1792011909.221712,
+    "ast_hash": "b49a14d2038b33a68ddece2ee607d979",
+    "semantic_hash": ""
+  },
+  "public/assets/Technical Hub.png": {
+    "mtime": 1791031285.9004884,
+    "seen": 1792011909.221712,
+    "ast_hash": "1efe6ca655e5bbbd35476dc74e4e1ba1",
+    "semantic_hash": ""
+  },
+  "public/assets/Wipro-Logo.png": {
+    "mtime": 1791979017.8910072,
+    "seen": 1792011909.221712,
+    "ast_hash": "f966c4abc1d114537f0983422d20fded",
+    "semantic_hash": ""
+  },
+  "public/assets/ai-literacy-logo.svg": {
+    "mtime": 1791868420.1770134,
+    "seen": 1792011909.221712,
+    "ast_hash": "4b318a6fcb4a4918fc51d9ef5e9f3b8d",
+    "semantic_hash": ""
+  },
+  "public/assets/ai-tool-integration-logo.svg": {
+    "mtime": 1791874140.057268,
+    "seen": 1792011909.221712,
+    "ast_hash": "014bbf6366c8aad2f11cd4fbe4667bc5",
+    "semantic_hash": ""
+  },
+  "public/assets/ai_ready_engineer.png": {
+    "mtime": 1791806339.102531,
+    "seen": 1792011909.221712,
+    "ast_hash": "e40f929699326e1a09967fb1acb77592",
+    "semantic_hash": ""
+  },
+  "public/assets/algorithmic-prompting-logo.svg": {
+    "mtime": 1791872791.9993737,
+    "seen": 1792011909.221712,
+    "ast_hash": "05349deab90d4847dce50fdd4c8e321e",
+    "semantic_hash": ""
+  },
+  "public/assets/ar1.jpeg": {
+    "mtime": 1791978622.7779486,
+    "seen": 1792011909.221712,
+    "ast_hash": "1bc36516b1a1b71b4b8eecbad5ef6a49",
+    "semantic_hash": ""
+  },
+  "public/assets/ar2.jpeg": {
+    "mtime": 1791978586.588036,
+    "seen": 1792011909.221712,
+    "ast_hash": "15d70af720ed2a635dae77123f1adaad",
+    "semantic_hash": ""
+  },
+  "public/assets/aws.svg": {
+    "mtime": 1791794662.4286115,
+    "seen": 1792011909.221712,
+    "ast_hash": "259e1339a21cf9a16881f722296cb704",
+    "semantic_hash": ""
+  },
+  "public/assets/babji sir speeck/1.jpg": {
+    "mtime": 1791975776.2829623,
+    "seen": 1792011909.221712,
+    "ast_hash": "9d828c2ebbe9f535e573b9876bb42ad5",
+    "semantic_hash": ""
+  },
+  "public/assets/babji sir speeck/2.jpg": {
+    "mtime": 1791975901.1672196,
+    "seen": 1792011909.221712,
+    "ast_hash": "fc53139ad937a41cfeac2f13442bc84d",
+    "semantic_hash": ""
+  },
+  "public/assets/babji sir speeck/3.jpg": {
+    "mtime": 1791975917.1201446,
+    "seen": 1792011909.221712,
+    "ast_hash": "f96015ddd7132dfbe847b085d03cb033",
+    "semantic_hash": ""
+  },
+  "public/assets/babji sir speeck/4.jpeg": {
+    "mtime": 1791977663.1945822,
+    "seen": 1792011909.221712,
+    "ast_hash": "b03bc09941f25f40f3318792d067a938",
+    "semantic_hash": ""
+  },
+  "public/assets/babji sir speeck/5.jpeg": {
+    "mtime": 1791977663.2094522,
+    "seen": 1792011909.221712,
+    "ast_hash": "861c9d6e8e55d7565b4435099e8992e5",
+    "semantic_hash": ""
+  },
+  "public/assets/babji sir speeck/6.jpeg": {
+    "mtime": 1791977663.2008338,
+    "seen": 1792011909.221712,
+    "ast_hash": "b5b2d45dcc3f7f9bb79a0f50b1eaf1fb",
+    "semantic_hash": ""
+  },
+  "public/assets/badge-copilot-CXyQbEb_.png": {
+    "mtime": 1790338688.3585825,
+    "seen": 1792011909.221712,
+    "ast_hash": "55322640b5a44ac2982fed49219faa98",
+    "semantic_hash": ""
+  },
+  "public/assets/bamboo_coder.png": {
+    "mtime": 1791806030.0537357,
+    "seen": 1792011909.221712,
+    "ast_hash": "c0103f69e6aa268afb1a0c7992fea5b6",
+    "semantic_hash": ""
+  },
+  "public/assets/bamboo_coder_phase1.png": {
+    "mtime": 1791806070.5207183,
+    "seen": 1792011909.221712,
+    "ast_hash": "578e24ad3069a1841dc17b7431bbc1d3",
+    "semantic_hash": ""
+  },
+  "public/assets/bamboo_coder_phase2.png": {
+    "mtime": 1791806070.541495,
+    "seen": 1792011909.221712,
+    "ast_hash": "9570994d58debfa7ae757b332f585915",
+    "semantic_hash": ""
+  },
+  "public/assets/besafe/besafe (2).jpeg": {
+    "mtime": 1791977621.030871,
+    "seen": 1792011909.221712,
+    "ast_hash": "97f8a3ca43452a35188b53ad6f19672b",
+    "semantic_hash": ""
+  },
+  "public/assets/besafe/besafe (3).jpeg": {
+    "mtime": 1791977621.0362864,
+    "seen": 1792011909.221712,
+    "ast_hash": "6fb6e9f42abcdcca7f70950b63d99d42",
+    "semantic_hash": ""
+  },
+  "public/assets/besafe/besafe 3.jpeg": {
+    "mtime": 1791977621.0220013,
+    "seen": 1792011909.221712,
+    "ast_hash": "2853b661761b6bd675fbae49b95e11ba",
+    "semantic_hash": ""
+  },
+  "public/assets/besafe/besafe.jpeg": {
+    "mtime": 1791977621.0122128,
+    "seen": 1792011909.221712,
+    "ast_hash": "48ffb896ff06d21d93da2a3ecec7425f",
+    "semantic_hash": ""
+  },
+  "public/assets/c-programming-logo.svg": {
+    "mtime": 1791868420.1700313,
+    "seen": 1792011909.221712,
+    "ast_hash": "4bbffd4210884ec8fd15e568bb1b3ef9",
+    "semantic_hash": ""
+  },
+  "public/assets/c.svg": {
+    "mtime": 1791801074.022418,
+    "seen": 1792011909.221712,
+    "ast_hash": "1a9824eaa069d092a75716a8fcce0700",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/1.jpg": {
+    "mtime": 1791972675.5269604,
+    "seen": 1792011909.221712,
+    "ast_hash": "ccabf3988b49bd75927fad0643f4064b",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/2.jpg": {
+    "mtime": 1791972687.8921587,
+    "seen": 1792011909.221712,
+    "ast_hash": "b17d67d67fe0f2cb266a6a56c9e44369",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/3.jpg": {
+    "mtime": 1791972720.6632698,
+    "seen": 1792011909.221712,
+    "ast_hash": "97e5e4c5a10c560423ff34e6afa6dd6a",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/4.jpg": {
+    "mtime": 1791972736.2941723,
+    "seen": 1792011909.221712,
+    "ast_hash": "312fae5938222be1f56044f20d1911a3",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/5.jpg": {
+    "mtime": 1791972745.6352465,
+    "seen": 1792011909.221712,
+    "ast_hash": "aa1a41f8e5aad4032779e376ebdcf01d",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/6.jpg": {
+    "mtime": 1791972761.6781998,
+    "seen": 1792011909.221712,
+    "ast_hash": "2d1a526ddab555e9f6f2332d4a8495c7",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/7.jpg": {
+    "mtime": 1791972770.591423,
+    "seen": 1792011909.221712,
+    "ast_hash": "dc587db77cec6d11653fe9acfb802269",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/8.jpg": {
+    "mtime": 1791972779.3755603,
+    "seen": 1792011909.221712,
+    "ast_hash": "e2a927873328ab4fcc5209ff063e4011",
+    "semantic_hash": ""
+  },
+  "public/assets/certified/9.jpg": {
+    "mtime": 1791972787.6895103,
+    "seen": 1792011909.221712,
+    "ast_hash": "ec58f2617c6608d0acf3a11bda751435",
+    "semantic_hash": ""
+  },
+  "public/assets/claude cert.png": {
+    "mtime": 1790338055.1891136,
+    "seen": 1792011909.221712,
+    "ast_hash": "8d79b9c46bedf16cfd37d49c4f7d8268",
+    "semantic_hash": ""
+  },
+  "public/assets/claude.png": {
+    "mtime": 1791032957.777053,
+    "seen": 1792011909.221712,
+    "ast_hash": "92d90b0b848f94459f7e47228c2199c5",
+    "semantic_hash": ""
+  },
+  "public/assets/computer-networking-logo.svg": {
+    "mtime": 1791874140.0418327,
+    "seen": 1792011909.221712,
+    "ast_hash": "157ac05353902bf2c99dd57d6ac4e960",
+    "semantic_hash": ""
+  },
+  "public/assets/cpp-programming-logo.svg": {
+    "mtime": 1791869930.3890245,
+    "seen": 1792011909.221712,
+    "ast_hash": "0f153a39ac3e14aad2db84925f4b7d6e",
+    "semantic_hash": ""
+  },
+  "public/assets/dbms-logo.svg": {
+    "mtime": 1791874140.0548308,
+    "seen": 1792011909.221712,
+    "ast_hash": "5164f64c7013baae929bb533ff77cff3",
+    "semantic_hash": ""
+  },
+  "public/assets/drive ready.png": {
+    "mtime": 1791874696.5977361,
+    "seen": 1792011909.221712,
+    "ast_hash": "73adfd77cb9ce0c2b8f63a951919e077",
+    "semantic_hash": ""
+  },
+  "public/assets/drive-ready-logo.svg": {
+    "mtime": 1791883182.2851226,
+    "seen": 1792011909.221712,
+    "ast_hash": "6bc449c03eeb0b39e960fa99772a511d",
+    "semantic_hash": ""
+  },
+  "public/assets/ds_dbms.svg": {
+    "mtime": 1791801701.7119155,
+    "seen": 1792011909.221712,
+    "ast_hash": "4d36cd536aedd3eaf3db482a40b66114",
+    "semantic_hash": ""
+  },
+  "public/assets/dsa-logo.svg": {
+    "mtime": 1791872791.997356,
+    "seen": 1792011909.221712,
+    "ast_hash": "610aedd7b797e100da4cc2d9f2910ce4",
+    "semantic_hash": ""
+  },
+  "public/assets/hibi-logo.png": {
+    "mtime": 1791985217.5279372,
+    "seen": 1792011909.221712,
+    "ast_hash": "fa64bb12bc523b535eaec4e2a17aec5b",
+    "semantic_hash": ""
+  },
+  "public/assets/hostel_logo.png": {
+    "mtime": 1791111212.3302786,
+    "seen": 1792011909.221712,
+    "ast_hash": "5c539d3ce2152f55bac70bd0321ab2c4",
+    "semantic_hash": ""
+  },
+  "public/assets/hub hoppers 3.jpg": {
+    "mtime": 1791870853.8856134,
+    "seen": 1792011909.221712,
+    "ast_hash": "95c5389a776628fbd835cc6024663808",
+    "semantic_hash": ""
+  },
+  "public/assets/hub hoppersd 6.jpg": {
+    "mtime": 1791870934.7507565,
+    "seen": 1792011909.221712,
+    "ast_hash": "b2d237a49a83d745b3682ce96b272dbb",
+    "semantic_hash": ""
+  },
+  "public/assets/hub hoppwers 5.jpg": {
+    "mtime": 1791870911.4154768,
+    "seen": 1792011909.221712,
+    "ast_hash": "9fa948d185ce23471cc8d4e5c9328b07",
+    "semantic_hash": ""
+  },
+  "public/assets/ibm_PNG19658.png": {
+    "mtime": 1791978979.036283,
+    "seen": 1792011909.221712,
+    "ast_hash": "d83a70b215c2410f824890a55cd60db3",
+    "semantic_hash": ""
+  },
+  "public/assets/jpath.png": {
+    "mtime": 1791802585.9201882,
+    "seen": 1792011909.221712,
+    "ast_hash": "276904aae0f66755f9ce33f211e0bad2",
+    "semantic_hash": ""
+  },
+  "public/assets/jpath.svg": {
+    "mtime": 1791802070.7616436,
+    "seen": 1792011909.221712,
+    "ast_hash": "128e1c53e198b89d0a2562386193e43c",
+    "semantic_hash": ""
+  },
+  "public/assets/jpath_trimmed.png": {
+    "mtime": 1791802567.292928,
+    "seen": 1792011909.221712,
+    "ast_hash": "276904aae0f66755f9ce33f211e0bad2",
+    "semantic_hash": ""
+  },
+  "public/assets/maya_logo.png": {
+    "mtime": 1791983359.8648658,
+    "seen": 1792011909.221712,
+    "ast_hash": "05e84912f42d17306b7e67f648327f80",
+    "semantic_hash": ""
+  },
+  "public/assets/mile2_authorized_training_center_8x_enhanced.png": {
+    "mtime": 1791462256.5307329,
+    "seen": 1792011909.221712,
+    "ast_hash": "367e82aa2a41e56d0adb03887fbea7aa",
+    "semantic_hash": ""
+  },
+  "public/assets/mongodb university.png": {
+    "mtime": 1791890321.7744668,
+    "seen": 1792011909.221712,
+    "ast_hash": "0c4157a7be990825b2dbf0e8329ed93d",
+    "semantic_hash": ""
+  },
+  "public/assets/moon-coders-logo.svg": {
+    "mtime": 1791881691.1470647,
+    "seen": 1792011909.221712,
+    "ast_hash": "4ef57c04e62589f60b621ab703ed6120",
+    "semantic_hash": ""
+  },
+  "public/assets/mpod.png": {
+    "mtime": 1791805752.081211,
+    "seen": 1792011909.221712,
+    "ast_hash": "746d67b9774ddd616a2d9a045c859fbb",
+    "semantic_hash": ""
+  },
+  "public/assets/mpod.svg": {
+    "mtime": 1791805343.982522,
+    "seen": 1792011909.221712,
+    "ast_hash": "07fe8f199a7d0aec9cdad7ffb5256a0f",
+    "semantic_hash": ""
+  },
+  "public/assets/mpod_dark_text.png": {
+    "mtime": 1791805752.081211,
+    "seen": 1792011909.221712,
+    "ast_hash": "746d67b9774ddd616a2d9a045c859fbb",
+    "semantic_hash": ""
+  },
+  "public/assets/mpod_raw.png": {
+    "mtime": 1791805751.895921,
+    "seen": 1792011909.221712,
+    "ast_hash": "26713883dc786954f8394baa9732e0d6",
+    "semantic_hash": ""
+  },
+  "public/assets/ncc-logo-transparent.png": {
+    "mtime": 1792003093.6355367,
+    "seen": 1792011909.221712,
+    "ast_hash": "f817ff10cc7f5302cac2d1c0b51629d2",
+    "semantic_hash": ""
+  },
+  "public/assets/ncc-logo.png": {
+    "mtime": 1792002563.4896529,
+    "seen": 1792011909.221712,
+    "ast_hash": "2d70cb8d936389eabe74cb868ecdfa3e",
+    "semantic_hash": ""
+  },
+  "public/assets/openai_square.png": {
+    "mtime": 1791702102.849795,
+    "seen": 1792011909.221712,
+    "ast_hash": "df43002c91a5b3c8d251dc6e6532ae7a",
+    "semantic_hash": ""
+  },
+  "public/assets/operating-systems-logo.svg": {
+    "mtime": 1791872791.9900012,
+    "seen": 1792011909.221712,
+    "ast_hash": "60dfc3b40a405c6acad515cadcbb5104",
+    "semantic_hash": ""
+  },
+  "public/assets/pega.png": {
+    "mtime": 1791462270.1949322,
+    "seen": 1792011909.221712,
+    "ast_hash": "12068459ea378920f1a7d25329b2b1c5",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/1.jpg": {
+    "mtime": 1791885724.878958,
+    "seen": 1792011909.221712,
+    "ast_hash": "b3dcdc69d58f08b0eb70ca2fea51e5bd",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/10.webp": {
+    "mtime": 1791886084.8273568,
+    "seen": 1792011909.2227075,
+    "ast_hash": "1e510e4bb750416b4d51ec1cc0048b5f",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/2.jpg": {
+    "mtime": 1791885756.8642867,
+    "seen": 1792011909.2227075,
+    "ast_hash": "1b7cf09749c4b2912be27842be81e467",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/3.jpg": {
+    "mtime": 1791885890.07021,
+    "seen": 1792011909.2227075,
+    "ast_hash": "db77bd5e9a8169f376a4a6b0a2ee4f14",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/4.jpg": {
+    "mtime": 1791885909.449106,
+    "seen": 1792011909.2227075,
+    "ast_hash": "74c750c7f77e5d1959533344732c48af",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/5.webp": {
+    "mtime": 1791885933.2350762,
+    "seen": 1792011909.2227075,
+    "ast_hash": "0f2f39e73ceb6be993d16ff21308e362",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/6.webp": {
+    "mtime": 1791886005.2431371,
+    "seen": 1792011909.2227075,
+    "ast_hash": "20583d8daf1c48bc4f4d5132350f7693",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/7.jpg": {
+    "mtime": 1791886033.5165794,
+    "seen": 1792011909.2227075,
+    "ast_hash": "e7e373d4d1f21a8ae0d71e408439d0fe",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/8.webp": {
+    "mtime": 1791886048.7781608,
+    "seen": 1792011909.2227075,
+    "ast_hash": "df4214265fd5b001e60648bc51cc2412",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/9.webp": {
+    "mtime": 1791886065.332081,
+    "seen": 1792011909.2227075,
+    "ast_hash": "3399b75ce4499ab970cbe307c6b36af0",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/Screenshot 2026-10-13 174827.png": {
+    "mtime": 1791893908.1664405,
+    "seen": 1792011909.2227075,
+    "ast_hash": "b24ee4dd7d9f3da0cfc7e5ee0509444c",
+    "semantic_hash": ""
+  },
+  "public/assets/placements/Screenshot 2026-10-13 174940.png": {
+    "mtime": 1791893980.680452,
+    "seen": 1792011909.2227075,
+    "ast_hash": "60cc911236cb4b4bdb8b60f12270ecc8",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/1.jpg": {
+    "mtime": 1791883807.2676258,
+    "seen": 1792011909.2227075,
+    "ast_hash": "3fc5c130afef19730efd64cb603360ae",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/2.jpg": {
+    "mtime": 1791883820.20688,
+    "seen": 1792011909.2227075,
+    "ast_hash": "fb7a963968611fbfc07345ba4e09d378",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/3.jpg": {
+    "mtime": 1791883840.0982416,
+    "seen": 1792011909.2227075,
+    "ast_hash": "47972c40914815284ceb0c9b75623b27",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/4.jpg": {
+    "mtime": 1791883865.359854,
+    "seen": 1792011909.2227075,
+    "ast_hash": "a710738c5a6fcfce57eb34a58276583b",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/5 (1).jpg": {
+    "mtime": 1791883894.4416516,
+    "seen": 1792011909.2227075,
+    "ast_hash": "39b199f7200cd9a5f1a4d1619628157e",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/5.jpg": {
+    "mtime": 1791883879.9087927,
+    "seen": 1792011909.2227075,
+    "ast_hash": "9cf31c0fb4f8d8cbc3dd5c9fb2297aee",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/6.jpg": {
+    "mtime": 1791883907.203096,
+    "seen": 1792011909.2227075,
+    "ast_hash": "31663b7370e557731ca23730c3c279c8",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/7.jpg": {
+    "mtime": 1791883936.6476817,
+    "seen": 1792011909.2227075,
+    "ast_hash": "99cd103c5d343fa4bb3ba8a051b8088e",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/claude.jpg": {
+    "mtime": 1791884311.865077,
+    "seen": 1792011909.2227075,
+    "ast_hash": "f4417f21b15e89ce58e641016f95f370",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest1.jpg": {
+    "mtime": 1791884116.155053,
+    "seen": 1792011909.2227075,
+    "ast_hash": "c6b67c00309d4b9ad731f91510340525",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest10.jpg": {
+    "mtime": 1791884336.1493278,
+    "seen": 1792011909.2227075,
+    "ast_hash": "3b27f063acb443a6fbf6a10f7e412ccb",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest11.jpg": {
+    "mtime": 1791884347.0213587,
+    "seen": 1792011909.2227075,
+    "ast_hash": "74635dd462fc02e5b01992cbed705c4b",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest12.jpg": {
+    "mtime": 1791884357.854006,
+    "seen": 1792011909.2227075,
+    "ast_hash": "c3ebe2b1a0f24aac1a3ccac78fb94d77",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest13.jpg": {
+    "mtime": 1791884370.818159,
+    "seen": 1792011909.2227075,
+    "ast_hash": "5b2464bf596315c05da4a4619938e589",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest2.jpg": {
+    "mtime": 1791884127.2123637,
+    "seen": 1792011909.2227075,
+    "ast_hash": "6a89ef0bb3d3bcb72d5b2b41f7b9d9ab",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest3.jpg": {
+    "mtime": 1791884139.5645568,
+    "seen": 1792011909.2227075,
+    "ast_hash": "30a948847778ff94e2238eb95ac12673",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest4.jpg": {
+    "mtime": 1791884150.9455838,
+    "seen": 1792011909.2227075,
+    "ast_hash": "a8b3948b1e34a650341aeb163af2e8f5",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest5.jpg": {
+    "mtime": 1791884200.6134183,
+    "seen": 1792011909.2227075,
+    "ast_hash": "067e9208475e134cd714e1e868ec08ac",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest6.jpg": {
+    "mtime": 1791884213.584843,
+    "seen": 1792011909.2227075,
+    "ast_hash": "e29252efddc018c29531f82e23342e99",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest7.jpg": {
+    "mtime": 1791884256.2651927,
+    "seen": 1792011909.2227075,
+    "ast_hash": "686308a61abaa8ff30daaf9d4eb17ba7",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest8.jpg": {
+    "mtime": 1791884272.8737333,
+    "seen": 1792011909.2227075,
+    "ast_hash": "6a6e17df1b00b83714d88ecbccf15e3b",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/guest9.jpg": {
+    "mtime": 1791884291.3242557,
+    "seen": 1792011909.2227075,
+    "ast_hash": "2f69f35bcbd712c6b30dfee824629275",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street1.jpg": {
+    "mtime": 1791883964.719812,
+    "seen": 1792011909.2227075,
+    "ast_hash": "9c44b98086608743bcc470ab60d5cbaf",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street10.jpg": {
+    "mtime": 1791884182.784071,
+    "seen": 1792011909.2227075,
+    "ast_hash": "dc075a31d620741a02565291ddd6bd35",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street11.jpg": {
+    "mtime": 1791884242.914145,
+    "seen": 1792011909.2227075,
+    "ast_hash": "dbd4af40605b41a1fdc89f85caea1405",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street2.jpg": {
+    "mtime": 1791883976.8863242,
+    "seen": 1792011909.2227075,
+    "ast_hash": "a79fa390320eab5b8d287f51efe90606",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street3.jpg": {
+    "mtime": 1791883992.4748492,
+    "seen": 1792011909.2227075,
+    "ast_hash": "ca6d41dfbb7780a4bf20d3aed70fe869",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street4.jpg": {
+    "mtime": 1791884008.7452853,
+    "seen": 1792011909.2227075,
+    "ast_hash": "4d94f606c6505fcb668c440050545be6",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street5.jpg": {
+    "mtime": 1791884040.4191961,
+    "seen": 1792011909.2227075,
+    "ast_hash": "d06c6336a52a07f7cd14a2fb572b4517",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street6.jpg": {
+    "mtime": 1791884056.1357973,
+    "seen": 1792011909.2227075,
+    "ast_hash": "feccfbb2e9544cc435ef0d7a1a9d6a9b",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street7.jpg": {
+    "mtime": 1791884069.295394,
+    "seen": 1792011909.2227075,
+    "ast_hash": "3d1bd1344988f5677ac15ba4b779787d",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street8.jpg": {
+    "mtime": 1791884086.9920948,
+    "seen": 1792011909.2227075,
+    "ast_hash": "78ac3e6307e5318830b719d10ed3ddfb",
+    "semantic_hash": ""
+  },
+  "public/assets/project space/street9.jpg": {
+    "mtime": 1791884168.2682717,
+    "seen": 1792011909.2227075,
+    "ast_hash": "fe36f15816801db1a9ed9233895f23a5",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/IMG_0491.png": {
+    "mtime": 1791892974.06567,
+    "seen": 1792011909.2227075,
+    "ast_hash": "c34ba81703bc5561e8a5264bc459d2f4",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/IMG_0500.png": {
+    "mtime": 1791892974.0792222,
+    "seen": 1792011909.2227075,
+    "ast_hash": "c3793711976bfd4a01ca769bfc8a432b",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/IMG_0503.png": {
+    "mtime": 1791892974.0935075,
+    "seen": 1792011909.2227075,
+    "ast_hash": "e0ad554ef1621369fe8fbb6b3d8cc3ec",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/_D7A0013.png": {
+    "mtime": 1791892974.1015382,
+    "seen": 1792011909.2227075,
+    "ast_hash": "4a486a16ff7b582643c9477829d411f6",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/_D7A0021.png": {
+    "mtime": 1791892974.1115506,
+    "seen": 1792011909.2227075,
+    "ast_hash": "18222c0b9de970e2bd6d6cdd01a75f9c",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/_D7A0023.png": {
+    "mtime": 1791892974.1206796,
+    "seen": 1792011909.2227075,
+    "ast_hash": "039a9fbc16dcb6c02baa369ee6ae65d0",
+    "semantic_hash": ""
+  },
+  "public/assets/project week/_MG_0186.JPG.jpeg": {
+    "mtime": 1790587694.0013945,
+    "seen": 1792011909.2227075,
+    "ast_hash": "171737968afe28c42d2f94b62795763a",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-01.jpg": {
+    "mtime": 1791893608.8842747,
+    "seen": 1792011909.2227075,
+    "ast_hash": "87bdbeb624c70105a05067dc117d7ec8",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-02.jpg": {
+    "mtime": 1791893608.9085817,
+    "seen": 1792011909.2227075,
+    "ast_hash": "7dbdc2ea427d60d42dbaee225526fcf1",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-03.jpg": {
+    "mtime": 1791893608.9242628,
+    "seen": 1792011909.2227075,
+    "ast_hash": "057d662524918a62d398b5dba38e4a73",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-04.jpg": {
+    "mtime": 1791893609.4336941,
+    "seen": 1792011909.2227075,
+    "ast_hash": "bb6775cc8e1a7b849a699a341d00173e",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-05.jpg": {
+    "mtime": 1791893610.1171677,
+    "seen": 1792011909.2227075,
+    "ast_hash": "750a1284efc10792bbd6a00c0ae48d6a",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-06.jpg": {
+    "mtime": 1791893610.1743357,
+    "seen": 1792011909.2227075,
+    "ast_hash": "2530f6712c97022c8e63b97b311b0981",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-07.jpg": {
+    "mtime": 1791893610.2335455,
+    "seen": 1792011909.2227075,
+    "ast_hash": "658d68d2867dc4e8fac99fb02d65a39f",
+    "semantic_hash": ""
+  },
+  "public/assets/project-week-gallery/project-week-08.jpg": {
+    "mtime": 1791893610.2915163,
+    "seen": 1792011909.2227075,
+    "ast_hash": "fcd2a69b3eee02ef6cc131f287c48e33",
+    "semantic_hash": ""
+  },
+  "public/assets/prompt-engineering-logo.svg": {
+    "mtime": 1791869930.3972957,
+    "seen": 1792011909.2227075,
+    "ast_hash": "d4c38d058cb6f9d13e555d0167f6c868",
+    "semantic_hash": ""
+  },
+  "public/assets/python.svg": {
+    "mtime": 1791801074.1264555,
+    "seen": 1792011909.2227075,
+    "ast_hash": "b19fd2040b2912a31a6e53affcea8e1b",
+    "semantic_hash": ""
+  },
+  "public/assets/qq media1.jpg": {
+    "mtime": 1791979947.3016887,
+    "seen": 1792011909.2227075,
+    "ast_hash": "8868f6d0023a78831b3e0ed8c1afc85a",
+    "semantic_hash": ""
+  },
+  "public/assets/qq-media-logo.png": {
+    "mtime": 1791981918.214973,
+    "seen": 1792011909.2227075,
+    "ast_hash": "41449eed82829e3f1973b5f980766b9b",
+    "semantic_hash": ""
+  },
+  "public/assets/qq3.jpeg": {
+    "mtime": 1791993144.6784086,
+    "seen": 1792011909.2227075,
+    "ast_hash": "21b16dbe8c04e419a755dfe239a7c94e",
+    "semantic_hash": ""
+  },
+  "public/assets/qq4.jpeg": {
+    "mtime": 1791993138.1850019,
+    "seen": 1792011909.2227075,
+    "ast_hash": "4ad5c19fe53b063cf63c49985a4cd8ee",
+    "semantic_hash": ""
+  },
+  "public/assets/qq5.jpeg": {
+    "mtime": 1791993129.5457647,
+    "seen": 1792011909.2227075,
+    "ast_hash": "87ac1cd8d787cad57168c0137b088018",
+    "semantic_hash": ""
+  },
+  "public/assets/redhat.png": {
+    "mtime": 1791462350.497264,
+    "seen": 1792011909.2227075,
+    "ast_hash": "da2a0c6b19d047b64529c993b743cc42",
+    "semantic_hash": ""
+  },
+  "public/assets/redhat.webp": {
+    "mtime": 1791044733.3628042,
+    "seen": 1792011909.2227075,
+    "ast_hash": "436d1271f9afc5c7cc7b58b0c12cdbc6",
+    "semantic_hash": ""
+  },
+  "public/assets/sno_partner-network-logo.png": {
+    "mtime": 1790604522.1858797,
+    "seen": 1792011909.2227075,
+    "ast_hash": "07e666f772d4028d048cd7dc3e56d116",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-01.jpg": {
+    "mtime": 1791873609.7771978,
+    "seen": 1792011909.2227075,
+    "ast_hash": "5b49307dc3f18a8e217a9a22cdc2b850",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-02.jpg": {
+    "mtime": 1791873610.2177062,
+    "seen": 1792011909.2227075,
+    "ast_hash": "15529d1a51f675e2c35348351d06f7be",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-03.jpg": {
+    "mtime": 1791873610.5550914,
+    "seen": 1792011909.2227075,
+    "ast_hash": "70ca559a2bd253d95f53b9600e45f340",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-04.jpg": {
+    "mtime": 1791873610.6199067,
+    "seen": 1792011909.2227075,
+    "ast_hash": "140c7d8d590da70e1b79edcccb3d90b4",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-05.jpg": {
+    "mtime": 1791873610.6791897,
+    "seen": 1792011909.2227075,
+    "ast_hash": "a403fcdd5904edddcd8195ba689089d0",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-06.jpg": {
+    "mtime": 1791873610.7333763,
+    "seen": 1792011909.2227075,
+    "ast_hash": "35d4657c18faa068bce150d420645dcc",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-07.jpg": {
+    "mtime": 1791873610.7873802,
+    "seen": 1792011909.2227075,
+    "ast_hash": "e810526610e8cf158c05f26f1e1e6438",
+    "semantic_hash": ""
+  },
+  "public/assets/t-square-clean-08.jpg": {
+    "mtime": 1791873610.8848128,
+    "seen": 1792011909.2227075,
+    "ast_hash": "f1ea54c23ee452107b25835cc6669142",
+    "semantic_hash": ""
+  },
+  "public/assets/tag.png": {
+    "mtime": 1791105203.3306754,
+    "seen": 1792011909.2227075,
+    "ast_hash": "137376e88041bb04000a5e723216b2d2",
+    "semantic_hash": ""
+  },
+  "public/assets/th_logo.png": {
+    "mtime": 1791036936.3051212,
+    "seen": 1792011909.2227075,
+    "ast_hash": "ac4b5fbed90e2595ddc8417e6fbc7654",
+    "semantic_hash": ""
+  },
+  "public/assets/tori-black.svg": {
+    "mtime": 1791110359.6701822,
+    "seen": 1792011909.2227075,
+    "ast_hash": "7488faf4632460ac5ddc0392b3e6972a",
+    "semantic_hash": ""
+  },
+  "public/assets/unnamed.png": {
+    "mtime": 1790313713.8643868,
+    "seen": 1792011909.2227075,
+    "ast_hash": "07b3c6192991a6f65036c7973d060c8d",
+    "semantic_hash": ""
+  },
+  "public/assets/vvit_logo.png": {
+    "mtime": 1791460047.0183637,
+    "seen": 1792011909.2227075,
+    "ast_hash": "2cf90c63cfb2c62b628f25a251af1480",
+    "semantic_hash": ""
+  },
+  "public/partners/Automation-Anywhere-Logo-Automation-Anywhere-Control-Room-Edureka.png": {
+    "mtime": 1790243997.9772878,
+    "seen": 1792011909.2227075,
+    "ast_hash": "1e57e87c4b80996f39491e09b6eddeed",
+    "semantic_hash": ""
+  },
+  "public/partners/claude.png": {
+    "mtime": 1791365660.2836854,
+    "seen": 1792011909.2227075,
+    "ast_hash": "da9b1bfdacdbc550d3bddb9f80424943",
+    "semantic_hash": ""
+  },
+  "public/partners/mile2_authorized_training_center_8x_enhanced.png": {
+    "mtime": 1791364860.788984,
+    "seen": 1792011909.2227075,
+    "ast_hash": "367e82aa2a41e56d0adb03887fbea7aa",
+    "semantic_hash": ""
+  },
+  "public/partners/openai_square.png": {
+    "mtime": 1791365645.7046196,
+    "seen": 1792011909.2227075,
+    "ast_hash": "df43002c91a5b3c8d251dc6e6532ae7a",
+    "semantic_hash": ""
+  },
+  "public/partners/pega.png": {
+    "mtime": 1791364878.692675,
+    "seen": 1792011909.2227075,
+    "ast_hash": "12068459ea378920f1a7d25329b2b1c5",
+    "semantic_hash": ""
+  },
+  "public/partners/redhat.png": {
+    "mtime": 1791462305.1673446,
+    "seen": 1792011909.2227075,
+    "ast_hash": "da2a0c6b19d047b64529c993b743cc42",
+    "semantic_hash": ""
+  },
+  "public/partners/sno_partner-network-logo.png": {
+    "mtime": 1790604522.1858797,
+    "seen": 1792011909.2227075,
+    "ast_hash": "07e666f772d4028d048cd7dc3e56d116",
+    "semantic_hash": ""
+  },
+  "public/technical-hub-logo-theme.svg": {
+    "mtime": 1791352386.3860023,
+    "seen": 1792011909.2227075,
+    "ast_hash": "a1024bdd9e6b8f831dd291873a91ee23",
+    "semantic_hash": ""
+  },
+  "public/toriiminds.svg": {
+    "mtime": 1791026726.696278,
+    "seen": 1792011909.2227075,
+    "ast_hash": "ef7b89ef3a9d8ba126efd4296611b2be",
+    "semantic_hash": ""
+  },
+  "public/Gitex/WhatsApp Video 2026-10-14 at 12.34.59 PM.mp4": {
+    "mtime": 1791977630.3665223,
+    "seen": 1792036755.0054924,
+    "ast_hash": "5db5af75f653f08f96975891a8b0692f",
+    "semantic_hash": "5db5af75f653f08f96975891a8b0692f"
+  },
+  "public/assets/gitex/WhatsApp Video 2026-10-14 at 12.34.59 PM.mp4": {
+    "mtime": 1791977630.3665223,
+    "seen": 1792036755.0054924,
+    "ast_hash": "5db5af75f653f08f96975891a8b0692f",
+    "semantic_hash": "5db5af75f653f08f96975891a8b0692f"
+  },
+  "src/hooks/useExpertiseScroll.js": {
+    "mtime": 1792043439.1767867,
+    "seen": 1792043859.2677598,
+    "ast_hash": "bae66697d497e8d7063b11d5b51cde82",
+    "semantic_hash": "bae66697d497e8d7063b11d5b51cde82"
+  }
+}
