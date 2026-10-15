@@ -6,18 +6,15 @@ const Testimonials = () => {
   const testimonials = [
     {
       quote: "Babji Neelam's vision with Technical Hub has fundamentally changed how we recruit fresh talent. The candidates are industry-ready.",
-      author: "Prakash R.",
-      role: "VP Engineering, TechCorp"
+      author: "Prakash R."
     },
     {
       quote: "Torii Minds' AI ATS engine streamlined our hiring process by 40%. It's a game-changer for campus recruitment.",
-      author: "Sarah M.",
-      role: "HR Director, InnovateX"
+      author: "Sarah M."
     },
     {
       quote: "The training I received at Technical Hub was rigorous and practical. It directly led to my placement at a top-tier MNC.",
-      author: "Rahul V.",
-      role: "Software Engineer & Alumni"
+      author: "Rahul V."
     }
   ];
 
@@ -77,7 +74,6 @@ const Testimonials = () => {
                 </p>
                 <div>
                   <div className="font-bold">{test.author}</div>
-                  <div className="text-sm text-gray-500">{test.role}</div>
                 </div>
               </Card>
             </motion.div>

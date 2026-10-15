@@ -55,11 +55,11 @@ const About = () => {
     },
     {
       year: 2022,
-      title: 'Scaling the Ecosystem',
-      description: 'Achieved critical mass in training, hosting signature events like CodeHeat, and establishing strong pipelines to top-tier technology companies.',
+      title: 'ISO Certified',
+      description: 'Achieved ISO certification, validating Technical Hub\'s international quality management standards, training methodologies, and operational excellence.',
     },
     {
-      year: 2024,
+      year: 2025,
       title: 'Launch of Torii Minds',
       description: 'Founded Torii Minds to revolutionize EdTech with AI-driven curriculums, advanced ATS engines, and AI interview simulations for next-generation learning.',
     }

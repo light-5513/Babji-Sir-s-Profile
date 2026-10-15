@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { motion, useScroll, useMotionValueEvent, useReducedMotion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { 
   GraduationCap, 
   Award, 
@@ -8,13 +8,13 @@ import {
   Megaphone, 
   Lightbulb, 
   ChevronRight, 
-  ChevronLeft, 
-  Activity,
-  BrainCircuit
+  ChevronLeft,
+  BrainCircuit,
+  Building2
 } from 'lucide-react';
 
 // The 6 High-Level Traits exactly as specified by user
-const traits = [
+const traitData = [
   { 
     id: 'teaching', 
     number: '01',
@@ -22,8 +22,8 @@ const traits = [
     shortTitle: 'Teaching', 
     icon: GraduationCap, 
     score: 96,
-    periodLabel: 'Teaching & Academic Leadership',
-    periods: ['August 1997 – December 2004', 'February 2016 – Present'],
+    periodLabel: 'Teaching Period',
+    periods: ['August 1997 – December 2004'],
     domain: 'Pedagogy & Faculty Roles',
     subExpertiseHeading: 'The Foundation of a Visionary: Early Teaching & Training Journey',
     subExpertises: [
@@ -110,6 +110,9 @@ const traits = [
       {
         organization: 'T-Connect',
         description: 'Successfully conducted across 7 editions.',
+        socialStats: [
+          { platform: 'Visited', followers: '25,000+' }
+        ],
         video: 'https://www.youtube-nocookie.com/embed/vpBMPKUCvuY?start=7'
       },
       {
@@ -136,7 +139,9 @@ const traits = [
         images: [
           '/assets/babji%20sir%20speeck/1.jpg',
           '/assets/babji%20sir%20speeck/2.jpg',
-          '/assets/babji%20sir%20speeck/3.jpg'
+          '/assets/babji%20sir%20speeck/3.jpg',
+          '/assets/babji%20sir%20speeck/5.jpeg',
+          '/assets/babji%20sir%20speeck/6.jpeg'
         ]
       },
       {
@@ -154,21 +159,59 @@ const traits = [
         showOrganizationWithLogo: true,
         logo: '/assets/pega.png',
         logoSize: 'large',
-        logoBlend: 'mix-blend-multiply',
+        logoBlend: 'mix-blend-multiply dark:mix-blend-normal dark:bg-white/10 dark:p-4 dark:rounded-2xl dark:backdrop-blur-sm',
         description: 'Technical Hub is one of only two companies in India partnered with Pega.'
       },
       {
-        organization: 'ServiceNow Authorized Training Partner',
+        organization: 'ServiceNow Partner Network',
         showOrganizationWithLogo: true,
-        logo: '/assets/ServiceNOW_BIG-ada03f01.png'
+        logo: '/partners/sno_partner-network-logo.png',
+        logoSize: 'large',
+        logoBlend: 'max-h-28 sm:max-h-36 dark:bg-white/10 dark:p-4 dark:rounded-2xl dark:backdrop-blur-sm',
+        description: 'Premier academic alliance empowering students with enterprise digital workflows, cloud platform administration, and ServiceNow app development.'
       },
       {
-        organization: 'Cadence Training Partner',
+        organization: 'Mile2 Authorized Training Center',
         showOrganizationWithLogo: true,
-        logo: '/assets/CadenceUPM.png'
+        logo: '/partners/mile2_authorized_training_center_8x_enhanced.png',
+        logoSize: 'large',
+        logoBlend: 'max-h-36 sm:max-h-48 dark:bg-white/10 dark:p-4 dark:rounded-2xl dark:backdrop-blur-sm',
+        description: 'Global cybersecurity accreditation center delivering certified ethical hacking, digital forensics, and enterprise information defense training.'
       },
       {
-        organization: 'Open AR Show',
+        organization: 'Automation Anywhere',
+        showOrganizationWithLogo: true,
+        logo: '/partners/Automation-Anywhere-Logo-Automation-Anywhere-Control-Room-Edureka.png',
+        logoSize: 'large',
+        logoBlend: 'max-h-36 sm:max-h-48 dark:bg-white/10 dark:p-4 dark:rounded-2xl dark:backdrop-blur-sm',
+        description: 'Robotic Process Automation (RPA) Centre of Excellence training students in cognitive automation, intelligent bot creation, and digital workforce orchestration.'
+      },
+      {
+        organization: 'Red Hat Academy',
+        showOrganizationWithLogo: true,
+        logo: '/partners/redhat.png',
+        logoSize: 'large',
+        logoBlend: 'max-h-44 sm:max-h-56 dark:bg-white/10 dark:p-4 dark:rounded-2xl dark:backdrop-blur-sm',
+        description: 'Enterprise open-source partner providing comprehensive curricula in enterprise Linux system administration, OpenShift, and containerized architectures.'
+      },
+      {
+        organization: 'OpenAI',
+        showOrganizationWithLogo: true,
+        logo: '/partners/openai_square.png',
+        logoSize: 'large',
+        logoBlend: 'max-h-48 sm:max-h-56 dark:invert',
+        description: 'Driving frontier Generative AI education, neural prompt engineering, and LLM application development to build industry-ready AI developers.'
+      },
+      {
+        organization: 'Anthropic Claude',
+        showOrganizationWithLogo: true,
+        logo: '/partners/claude.png',
+        logoSize: 'large',
+        logoBlend: 'max-h-48 sm:max-h-56 rounded-3xl shadow-md',
+        description: 'Collaborating on next-generation AI architectures, model safety, agentic reasoning, and real-world conversational intelligence systems.'
+      },
+      {
+        organization: 'Public AR Show',
         images: ['/assets/ar1.jpeg', '/assets/ar2.jpeg']
       }
     ]
@@ -215,33 +258,26 @@ const traits = [
     subExpertises: [
       {
         organization: 'Technical Hub',
-        role: 'Founder & CEO',
+        role: 'Founder & CEO · 2016',
         logo: '/assets/th_logo.png',
         logoSize: 'large',
-        description: 'Technical Hub, established in 2016 by Mr. Babji Neelam, is a dedicated skill development and incubation center that operates as an in-house technical training team. It is designed to bridge the gap between academic learning and modern industry requirements by equipping students with essential coding practices, problem-solving abilities, and hands-on experience. Through robust collaborations with industry-leading vendors, Technical Hub offers comprehensive, certification-aligned programs that ensure trainees are job-ready and highly competitive in the technology sector, serving as a critical launchpad for aspiring engineers to transition seamlessly into the professional workforce.',
-        socialStats: [
-          { platform: 'LinkedIn', followers: '24K+' },
-          { platform: 'Facebook', followers: '8K+' }
-        ]
+        description: 'Technical Hub, established in 2016 by Mr. Babji Neelam, is a dedicated skill development and incubation center that operates as an in-house technical training team. It is designed to bridge the gap between academic learning and modern industry requirements by equipping students with essential coding practices, problem-solving abilities, and hands-on experience. Through robust collaborations with industry-leading vendors, Technical Hub offers comprehensive, certification-aligned programs that ensure trainees are job-ready and highly competitive in the technology sector, serving as a critical launchpad for aspiring engineers to transition seamlessly into the professional workforce.'
       },
       {
         organization: 'Torii Minds',
         logos: [
           { name: 'Torii Minds', src: '/assets/tori-black.svg' },
-          { name: 'Nagarjuna Group of Institutions (NGI)', src: '/assets/NGI.png' }
+          { name: 'NCC Limited', src: '/assets/ncc-logo-transparent.png' }
         ],
-        role: 'Backed by NGI',
+        role: 'Founded 2025 · Backed by NCC',
         description: 'Torii Minds, inspired by the Japanese Torii gate, is a comprehensive tech education platform designed to transform engineering students into industry-ready professionals. Serving as a gateway to tech excellence, the platform bridges the gap between academic learning and modern industry demands through structured coding curriculums, AI integration, and hands-on career-readiness training.',
-        socialStats: [
-          { platform: 'LinkedIn', followers: '4K+' }
-        ],
       },
       {
         organization: 'QQ Media',
+        logo: '/assets/qq-media-logo.png',
+        hideOrganizationText: true,
         role: 'Mentoring',
-        description: 'Mentoring on digital media strategy, creative workflows, technology adoption, and brand campaigns.',
-        imagesLayout: 'side-by-side',
-        images: ['/assets/qq-media-logo.png', '/assets/QQ%20MEDIA%202.jpeg']
+        images: ['/assets/QQ%20MEDIA%202.jpeg', '/assets/qq3.jpeg', '/assets/qq4.jpeg', '/assets/qq5.jpeg']
       }
     ]
   },
@@ -272,10 +308,10 @@ const traits = [
         organization: 'NGI Digital Branding',
         showOrganizationWithLogo: true,
         role: 'Digital Branding',
-        description: 'Digital branding for Nagarjuna Group of Institutions.',
-        logo: '/assets/NGI.png',
-        logoSize: 'large',
-        logoBlend: 'mix-blend-multiply'
+        logos: [
+          { name: 'NGI Digital Branding', src: '/assets/NGI.png', size: 'large' },
+          { name: 'T@G', src: '/assets/tag.png' }
+        ]
       }
     ]
   },
@@ -293,14 +329,14 @@ const traits = [
         showOrganizationWithLogo: true,
         logo: '/assets/Myna.png',
         logoSize: 'large',
-        description: 'A voice-enabled campus communication app for announcements, updates, and keeping students and staff connected.'
+        description: 'A communication-building app.'
       },
       {
         organization: 'Owl Coder',
         showOrganizationWithLogo: true,
         logo: '/assets/Owl%20Coder%20Gradient%20Mascot%20Logo.png',
         logoSize: 'large',
-        description: 'A coding platform that helps trainers improve their coding performance through hands-on programming practice, challenges, and assessment.'
+        description: 'An app to improve coding performance for trainers.'
       },
       {
         organization: 'Maya',
@@ -308,37 +344,75 @@ const traits = [
         logo: '/assets/maya_logo.png',
         logoSize: 'large',
         logoBlend: 'mix-blend-multiply',
-        description: 'An interactive AI learning companion that helps trainers improve coding performance through guided learning and visual explanations.'
+        description: 'An app to improve coding performance for trainers.'
       },
       {
         organization: 'T@G',
         showOrganizationWithLogo: true,
         logo: '/assets/tag.png',
         logoSize: 'large',
-        description: 'A digital marketing management app designed to help teams organize and manage their online marketing work.'
+        description: 'An app to manage digital marketing.'
       },
       {
         organization: 'HiBi',
         showOrganizationWithLogo: true,
         logo: '/assets/hibi-logo.png',
         logoSize: 'large',
-        description: 'An HRMS platform for employee attendance, leave and permission requests, team information, and workplace documents.'
+        description: 'An HRMS platform.'
       },
       {
         organization: 'mPod',
         showOrganizationWithLogo: true,
         logo: '/assets/mpod_dark_text.png',
         logoSize: 'large',
-        description: 'An AI interview platform where candidates can practice interview conversations and build career readiness.'
+        description: 'An AI interview platform.'
       },
       {
         organization: 'AptLogic',
         icon: BrainCircuit,
-        description: 'An aptitude and logic practice platform designed to strengthen quantitative reasoning and problem-solving skills.'
+        description: 'An aptitude and logic improvement app.'
+      },
+      {
+        organization: 'BeSafe',
+        showOrganizationWithLogo: true,
+        logo: '/assets/besafe_logo.png',
+        logoSize: 'large',
+        role: 'Public Safety & Security AR Application',
+        headline: 'Launched by Olympic Medalist PV Sindhu & State Home Minister',
+        description: 'An Augmented Reality (AR) application designed to increase public safety, awareness, and security in collaboration with the Vijayawada City Police, SHE Team, and Technical Hub.',
+        impact: 'Officially inaugurated on stage by Olympic Champion PV Sindhu alongside the State Home Minister and senior police officials to revolutionize public safety education.',
+        imagesFit: 'contain',
+        images: [
+          '/assets/besafe/besafe (2).jpeg',
+          '/assets/besafe/besafe 3.jpeg',
+          '/assets/besafe/besafe (3).jpeg',
+          '/assets/besafe/besafe.jpeg',
+          '/assets/besafe/WhatsApp Image 2026-10-14 at 3.41.27 PM (1).jpeg'
+        ]
+      },
+      {
+        organization: 'HRMS for Oman Government',
+        icon: Building2,
+        role: 'Enterprise Digital Governance Platform',
+        headline: 'Launched by Ministry of Labour, Government of Oman',
+        description: 'A comprehensive Human Resource Management System (HRMS) developed and implemented for the Government of Oman.',
+        impact: 'Delivered an advanced enterprise HRMS solution officially launched in partnership with the Ministry of Labour of the Oman Government.',
+        images: [
+          '/assets/oman/WhatsApp Image 2026-10-14 at 1.04.45 PM (1).jpeg',
+          '/assets/oman/WhatsApp Image 2026-10-14 at 1.04.45 PM (2).jpeg',
+          '/assets/oman/WhatsApp Image 2026-10-14 at 1.04.46 PM.jpeg',
+          '/assets/oman/WhatsApp Image 2026-10-14 at 3.41.27 PM.jpeg'
+        ]
       }
     ]
   }
 ];
+
+const traits = ['teaching', 'industry', 'entrepreneur', 'training', 'branding', 'innovation']
+  .map((id, index) => {
+    const trait = traitData.find((item) => item.id === id);
+    return { ...trait, number: String(index + 1).padStart(2, '0') };
+  });
 
 const expertiseStages = traits.flatMap((trait, traitIndex) => {
   if (trait.subExpertises?.length) {
@@ -353,218 +427,257 @@ const expertiseStages = traits.flatMap((trait, traitIndex) => {
   return [{ traitIndex, subExpertise: null, subIndex: 0, subTotal: 0 }];
 });
 
-// Large, Commanding Hexagonal Radar Chart Component - Shifted Firmly to the Left
-const LargeRadarChart = ({ activeTraitIndex, onSelectTrait }) => {
-  const size = 440;
-  const center = size / 2;
-  const radius = 138;
-  const total = traits.length;
-
-  const levels = [0.25, 0.5, 0.75, 1.0];
-
-  const getCoordinates = (index, value = 1.0) => {
-    const angle = (Math.PI * 2 / total) * index - Math.PI / 2;
-    const r = radius * value;
-    const x = center + r * Math.cos(angle);
-    const y = center + r * Math.sin(angle);
-    return { x, y, angle };
-  };
-
-  const dataPoints = traits.map((t, i) => {
-    let multiplier = t.score / 100;
-    if (i === activeTraitIndex) multiplier = Math.min(1.08, multiplier * 1.08);
-    else multiplier = multiplier * 0.9;
-    const { x, y } = getCoordinates(i, multiplier);
-    return `${x},${y}`;
-  }).join(' ');
-
-  return (
-    <div className="relative w-full max-w-[460px] mr-auto ml-0 select-none p-0">
-      {/* Outer ambient glow */}
-      <div className="absolute inset-2 rounded-full border border-blue-500/10 dark:border-blue-400/10 pointer-events-none"></div>
-      
-      <svg 
-        viewBox={`0 0 ${size} ${size}`} 
-        className="w-full h-full overflow-visible"
-      >
-        <defs>
-          <linearGradient id="largeRadarFill" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.45" />
-            <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#ec4899" stopOpacity="0.3" />
-          </linearGradient>
-          <linearGradient id="largeRadarStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3b82f6" />
-            <stop offset="50%" stopColor="#a855f7" />
-            <stop offset="100%" stopColor="#ec4899" />
-          </linearGradient>
-          <radialGradient id="largeBeamGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.35" />
-            <stop offset="70%" stopColor="#8b5cf6" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* Sweeping Radar Beam */}
-        <g className="origin-center" style={{ transformOrigin: `${center}px ${center}px` }}>
-          <motion.circle
-            cx={center}
-            cy={center}
-            r={radius}
-            fill="url(#largeBeamGrad)"
-            className="pointer-events-none opacity-40"
-            animate={{ rotate: 360 }}
-             transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
-          />
-        </g>
-
-        {/* Concentric Hexagons */}
-        {levels.map((lvl, lIdx) => {
-          const points = traits.map((_, i) => {
-            const { x, y } = getCoordinates(i, lvl);
-            return `${x},${y}`;
-          }).join(' ');
-          return (
-            <polygon
-              key={lIdx}
-              points={points}
-              className="fill-transparent stroke-gray-300/60 dark:stroke-gray-700/60 stroke-[1.5]"
-              strokeDasharray={lIdx === levels.length - 1 ? "none" : "3 3"}
-            />
-          );
-        })}
-
-        {/* Radial Spokes */}
-        {traits.map((_, i) => {
-          const { x, y } = getCoordinates(i, 1.0);
-          const isSelected = i === activeTraitIndex;
-          return (
-            <line
-              key={i}
-              x1={center}
-              y1={center}
-              x2={x}
-              y2={y}
-              className={`transition-colors duration-150 ${
-                isSelected 
-                  ? 'stroke-blue-500 stroke-2' 
-                  : 'stroke-gray-300/50 dark:stroke-gray-700/50 stroke-1'
-              }`}
-            />
-          );
-        })}
-
-        {/* Data Polygon */}
-        <polygon
-          points={dataPoints}
-          fill="url(#largeRadarFill)"
-          stroke="url(#largeRadarStroke)"
-          strokeWidth="3.5"
-          className="transition-all duration-200 ease-out"
-        />
-
-        {/* Interactive Vertex Nodes & Outer Labels */}
-        {traits.map((t, i) => {
-          const val = t.score / 100;
-          const { x, y } = getCoordinates(i, i === activeTraitIndex ? Math.min(1.08, val * 1.08) : val * 0.9);
-          const outerCoord = getCoordinates(i, 1.34);
-          const isSelected = i === activeTraitIndex;
-          const labelDx = Math.max(Math.abs(x - outerCoord.x) - 74, 0);
-          const labelDy = Math.max(Math.abs(y - outerCoord.y) - 14, 0);
-          const labelOverlapsNode = isSelected && Math.hypot(labelDx, labelDy) < 16;
-          const labelY = labelOverlapsNode
-            ? outerCoord.y + (outerCoord.y < center ? -24 : 24)
-            : outerCoord.y;
-
-          return (
-            <g 
-              key={t.id} 
-              className="cursor-pointer group"
-              onClick={() => onSelectTrait(i)}
-            >
-              {/* Outer Pill with EXACT Category Title */}
-              <g transform={`translate(${outerCoord.x}, ${labelY})`}>
-                <rect
-                  x="-74"
-                  y="-14"
-                  width="148"
-                  height="28"
-                  rx="14"
-                   className={`transition-all duration-150 ${
-                    isSelected 
-                      ? 'fill-blue-600 dark:fill-blue-500' 
-                      : 'fill-transparent group-hover:fill-gray-200 dark:group-hover:fill-gray-700'
-                  }`}
-                />
-                <text
-                  x="0"
-                  y="4"
-                  textAnchor="middle"
-                  className={`text-[11px] font-black tracking-tight transition-all duration-150 ${
-                    isSelected 
-                      ? 'fill-white text-[11.5px]' 
-                      : 'fill-gray-700 dark:fill-gray-300 group-hover:fill-blue-600 dark:group-hover:fill-blue-400'
-                  }`}
-                >
-                  {t.shortTitle}
-                </text>
-              </g>
-
-              {/* Pulsing Ring on active node */}
-              {isSelected && (
-                <circle
-                  cx={x}
-                  cy={y}
-                  r="16"
-                  className="fill-blue-500/25 stroke-blue-500 stroke-2 animate-ping"
-                />
-              )}
-
-              {/* Vertex Circle */}
-              <circle
-                cx={x}
-                cy={y}
-                r={isSelected ? "9" : "6"}
-                className={`transition-all duration-150 ${
-                  isSelected
-                    ? 'fill-blue-600 stroke-white dark:stroke-black stroke-2'
-                    : 'fill-gray-800 dark:fill-white group-hover:fill-blue-500'
-                }`}
-              />
-
-            </g>
-          );
-        })}
-
-        {/* Center Point */}
-        <circle cx={center} cy={center} r="5" className="fill-blue-600 stroke-white dark:stroke-black stroke-2" />
-      </svg>
-    </div>
-  );
-};
-
 const Expertise = () => {
   const containerRef = useRef(null);
   const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end']
-  });
+  useEffect(() => {
+    setIsVideoPlaying(false);
+  }, [activeStageIndex]);
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    const clamped = Math.max(0, Math.min(0.9999, latest));
-    setActiveStageIndex(Math.floor(clamped * expertiseStages.length));
-  });
+  // Mirror of activeStageIndex so the scroll handler never reads a stale value.
+  const activeStageIndexRef = useRef(0);
+  useEffect(() => {
+    activeStageIndexRef.current = activeStageIndex;
+  }, [activeStageIndex]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return undefined;
+
+    let isTransitioning = false;
+    let isWheelLocked = false;
+    let wheelUnlockTimer = null;
+    let lastStepTime = 0;
+    let lastDir = 0;
+    const EXIT_COOLDOWN_MS = 500;
+    const STEP_COOLDOWN_MS = 380;
+    const MIN_WHEEL_DELTA = 3;
+
+    const getEntryY = () => el.offsetTop - 80;
+
+    const isActive = () => {
+      const entryY = getEntryY();
+      const rect = el.getBoundingClientRect();
+      const inScrollRange = window.scrollY >= entryY - 80 && window.scrollY <= el.offsetTop + el.offsetHeight;
+      const inView = rect.top <= 120 && rect.bottom >= 150;
+      return inScrollRange || inView;
+    };
+
+    const stepStage = (dir) => {
+      const current = activeStageIndexRef.current;
+      const next = current + dir;
+      if (next < 0 || next >= expertiseStages.length) return false;
+      activeStageIndexRef.current = next;
+      setActiveStageIndex(next);
+      return true;
+    };
+
+    const goToSection = (sectionId, fallbackOffset) => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: fallbackOffset, behavior: 'smooth' });
+      }
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 900);
+    };
+
+    // ── Wheel handling: 1 deliberate gesture = exactly 1 slide (ZERO SKIPPING) ──
+    const onWheel = (e) => {
+      if (e.ctrlKey) return; // Allow pinch-zoom
+      if (isTransitioning) {
+        e.preventDefault();
+        return;
+      }
+
+      if (!isActive()) return;
+      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (Math.abs(delta) < MIN_WHEEL_DELTA) return;
+
+      const now = Date.now();
+      const entryY = getEntryY();
+      const dir = delta > 0 ? 1 : -1;
+      const current = activeStageIndexRef.current;
+      const isReversing = lastDir !== 0 && dir !== lastDir;
+
+      // ── Handle Exit at Last Slide (Innovation / AptLogic / Oman HRMS) ────────
+      if (dir > 0 && current >= expertiseStages.length - 1) {
+        e.preventDefault();
+        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
+          lastStepTime = now;
+          goToSection('ventures', el.offsetTop + el.offsetHeight);
+        }
+        return;
+      }
+
+      // ── Handle Exit at First Slide (Teaching / APTECH) ─────────────────────
+      if (dir < 0 && current <= 0) {
+        e.preventDefault();
+        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
+          lastStepTime = now;
+          goToSection('about', Math.max(0, el.offsetTop - window.innerHeight));
+        }
+        return;
+      }
+
+      // Always lock native page scroll while traversing inside expertise subsections
+      e.preventDefault();
+
+      if (Math.abs(window.scrollY - entryY) > 2) {
+        window.scrollTo({ top: entryY, behavior: 'instant' });
+      }
+
+      // If reversing direction (e.g. from down to up or up to down), unlock immediately!
+      if (isReversing) {
+        isWheelLocked = false;
+      }
+
+      // Debounce unlock: after 180ms of wheel silence, allow next step
+      clearTimeout(wheelUnlockTimer);
+      wheelUnlockTimer = setTimeout(() => {
+        isWheelLocked = false;
+        lastDir = 0;
+      }, 180);
+
+      // If locked within the same gesture, ignore decaying momentum
+      if (isWheelLocked && !isReversing) {
+        return;
+      }
+
+      if (now - lastStepTime < STEP_COOLDOWN_MS && !isReversing) {
+        return;
+      }
+
+      // Step stage
+      isWheelLocked = true;
+      lastDir = dir;
+      lastStepTime = now;
+      stepStage(dir);
+    };
+
+    // ── Touch handling: 1 finger swipe = exactly 1 slide ───────────────────
+    let touchStartY = null;
+    let hasTouchStepped = false;
+
+    const onTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+      hasTouchStepped = false;
+    };
+
+    const onTouchMove = (e) => {
+      if (touchStartY === null || isTransitioning || hasTouchStepped) return;
+      if (!isActive()) return;
+
+      const dy = touchStartY - e.touches[0].clientY;
+      const dx = (e.touches[0].clientX || 0); // ignore horizontal drift
+      if (Math.abs(dy) < 40) return;
+
+      const dir = dy > 0 ? 1 : -1;
+      const current = activeStageIndexRef.current;
+      const now = Date.now();
+
+      if (dir > 0 && current >= expertiseStages.length - 1) {
+        e.preventDefault();
+        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
+          lastStepTime = now;
+          hasTouchStepped = true;
+          goToSection('ventures', el.offsetTop + el.offsetHeight);
+        }
+        return;
+      }
+
+      if (dir < 0 && current <= 0) {
+        e.preventDefault();
+        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
+          lastStepTime = now;
+          hasTouchStepped = true;
+          goToSection('about', Math.max(0, el.offsetTop - window.innerHeight));
+        }
+        return;
+      }
+
+      e.preventDefault();
+      hasTouchStepped = true;
+      lastStepTime = now;
+      stepStage(dir);
+    };
+
+    const onTouchEnd = () => {
+      touchStartY = null;
+      hasTouchStepped = false;
+    };
+
+    // ── Keyboard navigation: 1 key press = exactly 1 slide ─────────────────
+    let arrowHeld = false;
+    const onKeyDown = (e) => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      if (isTransitioning || !isActive() || arrowHeld) return;
+
+      const dir = e.key === 'ArrowDown' ? 1 : -1;
+      const current = activeStageIndexRef.current;
+      const now = Date.now();
+
+      if (dir > 0 && current >= expertiseStages.length - 1) {
+        e.preventDefault();
+        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
+          lastStepTime = now;
+          arrowHeld = true;
+          goToSection('ventures', el.offsetTop + el.offsetHeight);
+        }
+        return;
+      }
+
+      if (dir < 0 && current <= 0) {
+        e.preventDefault();
+        if (now - lastStepTime >= EXIT_COOLDOWN_MS) {
+          lastStepTime = now;
+          arrowHeld = true;
+          goToSection('about', Math.max(0, el.offsetTop - window.innerHeight));
+        }
+        return;
+      }
+
+      e.preventDefault();
+      arrowHeld = true;
+      lastStepTime = now;
+      stepStage(dir);
+    };
+
+    const onKeyUp = (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        arrowHeld = false;
+      }
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+
+    return () => {
+      clearTimeout(wheelUnlockTimer);
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
+    };
+  }, []);
 
   const scrollToStage = (targetStageIndex) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const containerAbsoluteTop = rect.top + (window.scrollY || document.documentElement.scrollTop);
-    const maxScroll = containerRef.current.offsetHeight - window.innerHeight;
-    const targetScroll = containerAbsoluteTop + (targetStageIndex / (expertiseStages.length - 1)) * maxScroll;
-    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    const clamped = Math.max(0, Math.min(expertiseStages.length - 1, targetStageIndex));
+    activeStageIndexRef.current = clamped;
+    setActiveStageIndex(clamped);
   };
 
   const scrollToTrait = (targetTraitIndex) => {
@@ -582,17 +695,13 @@ const Expertise = () => {
     <section
       id="expertise"
       ref={containerRef}
-      className="relative w-full scroll-mt-20"
-      style={{ height: `${(expertiseStages.length + 1) * 100}vh` }}
+      className="relative w-full scroll-mt-20 min-h-[calc(100svh-5rem)]"
     >
       <div className="sticky top-20 h-[calc(100svh-5rem)] w-full flex flex-col justify-between p-3 sm:p-5 md:p-6 lg:p-8 overflow-hidden bg-light-bg dark:bg-dark-bg transition-colors duration-300">
         <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between gap-4 pb-2.5">
           <div className="flex items-center gap-3">
             <span className="text-sm font-bold px-3 py-1.5 rounded-md bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300">
               {String(activeStageIndex + 1).padStart(2, '0')} / {expertiseStages.length}
-            </span>
-            <span className="text-sm font-extrabold uppercase text-gray-600 dark:text-gray-300">
-              {activeTrait.title}
             </span>
           </div>
 
@@ -601,10 +710,11 @@ const Expertise = () => {
               <button
                 key={trait.id}
                 onClick={() => scrollToTrait(index)}
-                className={`text-xs font-bold px-3 py-1.5 rounded-md transition-colors ${
+                aria-pressed={index === activeTraitIndex}
+                className={`rounded-md px-3 py-1.5 text-xs font-bold transition-colors ${
                   index === activeTraitIndex
                     ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-blue-700 dark:hover:text-blue-300'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800'
                 }`}
               >
                 {trait.shortTitle}
@@ -635,62 +745,70 @@ const Expertise = () => {
         </div>
 
         <div className="w-full max-w-[1600px] mx-auto grid flex-1 min-h-0 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch py-3">
-          <div className="lg:col-span-5 h-full flex flex-col items-start justify-center">
-            <div className="w-full flex items-center justify-between max-w-[440px] mb-2 px-1">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <Activity size={14} className="text-blue-500" /> Executive Competency Radar
+          <div className="lg:col-span-5 h-full flex items-center pr-4">
+            <motion.div
+              key={activeTrait.id}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: 'easeOut' }}
+              className="w-full rounded-2xl bg-blue-500/10 p-6 sm:p-8 space-y-5"
+            >
+              <div className="flex items-start gap-4">
+                <div className="pt-1">
+                  {React.createElement(activeTrait.icon, { size: 28, className: 'text-blue-700 dark:text-blue-300' })}
+                </div>
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-300">
+                    Main Expertise · Pillar {activeTrait.number} of {traits.length}
+                  </span>
+                  <h2 className="mt-1 text-3xl sm:text-4xl font-black text-gray-900 dark:text-white">
+                    {activeTrait.title}
+                  </h2>
+                </div>
               </div>
-              <span className="text-xs font-bold text-blue-700 dark:text-blue-300 px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/40">
-                {activeTrait.score}% Mastery
-              </span>
-            </div>
-            <div className="w-full flex justify-start">
-              <LargeRadarChart activeTraitIndex={activeTraitIndex} onSelectTrait={scrollToTrait} />
-            </div>
+
+              <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {activeTrait.domain}
+              </p>
+
+              {activeTrait.periods?.length > 0 && (
+                <div className="space-y-1">
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                    {activeTrait.periodLabel}
+                  </span>
+                  {activeTrait.periods.map((period) => (
+                    <p key={period} className="font-semibold text-blue-700 dark:text-blue-300">
+                      {period}
+                    </p>
+                  ))}
+                </div>
+              )}
+
+              {activeTrait.subExpertiseHeading && (
+                <p className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
+                  {activeTrait.subExpertiseHeading}
+                </p>
+              )}
+
+              {activeTrait.id === 'teaching' && (
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">Started</span>
+                    <p className="mt-1 text-sm font-semibold text-gray-700 dark:text-gray-200">August 1997 · APTECH, Lab Technician</p>
+                  </div>
+                </div>
+              )}
+            </motion.div>
           </div>
 
           <motion.div
             key={activeStageIndex}
-            initial={prefersReducedMotion ? false : { opacity: 0, filter: 'blur(12px)', y: 24, scale: 0.97 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.55, ease: 'easeInOut' }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.22, ease: 'easeOut' }}
             className="w-full lg:col-span-7 h-full min-h-0 flex flex-col justify-center"
           >
-            <div className="relative -top-2 w-full mb-2.5 p-3.5 sm:p-4 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5">
-                <div className="p-2.5 sm:p-3 rounded-lg">
-                  <MainTraitIcon size={22} className="text-blue-600 dark:text-blue-400" />
-                </div>
-                <div>
-                  <span className="text-xs font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 block mb-1">
-                    MAIN EXPERTISE · PILLAR {activeTrait.number} OF {String(traits.length).padStart(2, '0')}
-                    {activeStage.subExpertise && ` · ${activeTrait.title.toUpperCase()} SUB-EXPERTISE ${String(activeStage.subIndex + 1).padStart(2, '0')} OF ${String(activeStage.subTotal).padStart(2, '0')}`}
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black dark:text-white leading-tight">
-                    {activeTrait.title}
-                  </h2>
-                  {activeTrait.subExpertiseHeading && (
-                    <p className="mt-2 max-w-2xl text-sm sm:text-base font-semibold text-gray-600 dark:text-gray-300">
-                      {activeTrait.subExpertiseHeading}
-                    </p>
-                  )}
-                </div>
-              </div>
-              {activeTrait.periods?.length > 0 && (
-                <div className="text-right hidden sm:block">
-                  <span className="text-xs font-bold text-gray-500 block uppercase tracking-wider">
-                    {activeTrait.periodLabel}
-                  </span>
-                  {activeTrait.periods.map((period) => (
-                    <span key={period} className="text-base sm:text-lg font-bold text-blue-700 dark:text-blue-300 block">
-                      {period}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="flex-1 min-h-0 flex flex-col justify-start pt-8 pl-3 sm:pl-5 md:pl-8">
+            <div className={`flex-1 min-h-0 flex flex-col justify-center py-8 ${activeStage.subExpertise?.centered ? 'items-center text-center px-4' : 'pl-3 sm:pl-5 md:pl-8'}`}>
               {activeStage.subExpertise && (
                 <div className="space-y-3">
                     {ActiveSubExpertiseIcon && (
@@ -713,7 +831,7 @@ const Expertise = () => {
                             src={logo.src}
                             alt={logo.name}
                             title={logo.name}
-                            className="h-32 w-64 object-contain"
+                            className={logo.size === 'large' ? 'h-48 w-96 object-contain object-center' : 'h-36 w-64 object-contain object-center'}
                             loading="lazy"
                           />
                         ))}
@@ -742,7 +860,7 @@ const Expertise = () => {
                               {stat.followers}
                             </span>
                             <span className="text-base font-semibold text-gray-600 dark:text-gray-300">
-                              {stat.platform} followers
+                              {stat.platform}
                             </span>
                           </div>
                         ))}
@@ -793,7 +911,7 @@ const Expertise = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Open Oracle Academy success story"
-                        className="mt-4 block w-full max-w-[520px] rounded-2xl bg-white/55 p-4 sm:p-5 dark:bg-gray-900/40"
+                        className="mt-4 mx-auto block w-full max-w-[520px] rounded-2xl bg-white/55 p-4 sm:p-5 dark:bg-gray-900/40"
                       >
                         <div className="overflow-hidden rounded-xl bg-white/80 dark:bg-gray-800/70">
                           <img
@@ -833,7 +951,7 @@ const Expertise = () => {
                         <img
                           src={activeStage.subExpertise.image}
                           alt={activeStage.subExpertise.imageAlt || `${activeStage.subExpertise.organization} image`}
-                          className="mt-4 block h-auto w-full max-w-[560px] rounded-lg"
+                          className="mt-4 block h-auto w-full max-w-[800px] rounded-lg"
                         />
                       )
                     )}
@@ -846,7 +964,7 @@ const Expertise = () => {
                               src={partner.logo}
                               alt={partner.name}
                               title={partner.name}
-                              className="h-24 w-72 object-contain"
+                              className="h-32 w-80 object-contain"
                               loading="lazy"
                             />
                           ))}
@@ -866,7 +984,7 @@ const Expertise = () => {
                                     src={partner.logo}
                                     alt={copy === 0 ? partner.name : ''}
                                     title={partner.name}
-                                    className={`h-24 w-72 flex-shrink-0 object-contain ${partner.name === 'MongoDB University' ? 'mix-blend-multiply' : ''}`}
+                                    className={`h-32 w-80 flex-shrink-0 object-contain ${partner.name === 'MongoDB University' ? 'mix-blend-multiply' : ''}`}
                                     loading="lazy"
                                   />
                                 ))}
@@ -893,7 +1011,7 @@ const Expertise = () => {
                           />
                         </div>
                       ) : (
-                        <div className="drive-ready-gallery mt-5 w-full" role="region" aria-label={`${activeStage.subExpertise.organization} image gallery`}>
+                        <div className="drive-ready-gallery mt-5 w-full mx-auto" role="region" aria-label={`${activeStage.subExpertise.organization} image gallery`}>
                           <div className="drive-ready-gallery-track">
                             {[0, 1].map((copy) => (
                               <div
@@ -906,7 +1024,11 @@ const Expertise = () => {
                                     key={`${copy}-${image}`}
                                     src={image}
                                     alt={copy === 0 ? `${activeStage.subExpertise.organization} image ${index + 1}` : ''}
-                                    className="aspect-video w-80 flex-shrink-0 rounded-lg object-cover sm:w-96 lg:w-[28rem]"
+                                    className={`aspect-video w-96 flex-shrink-0 rounded-xl ${
+                                      activeStage.subExpertise.imagesFit === 'contain'
+                                        ? 'object-contain'
+                                        : 'rounded-lg object-cover sm:w-[30rem] lg:w-[40rem]'
+                                    }`}
                                     loading="lazy"
                                   />
                                 ))}
@@ -917,16 +1039,29 @@ const Expertise = () => {
                       )
                     )}
                     {activeStage.subExpertise.video && (
-                      <div className="mx-auto mt-5 aspect-video w-full max-w-[800px] overflow-hidden rounded-lg">
+                      <div className="relative mx-auto mt-4 aspect-video w-full max-w-[760px] overflow-hidden rounded-xl shadow-md group">
                         <iframe
-                          src={activeStage.subExpertise.video}
+                          src={`${activeStage.subExpertise.video}${isVideoPlaying ? '&autoplay=1' : ''}`}
                           title={`${activeStage.subExpertise.organization} video`}
-                          className="h-full w-full"
+                          className={`h-full w-full ${!isVideoPlaying ? 'pointer-events-none' : ''}`}
                           loading="lazy"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           referrerPolicy="strict-origin-when-cross-origin"
                           allowFullScreen
                         />
+                        {!isVideoPlaying && (
+                          <div
+                            onClick={() => setIsVideoPlaying(true)}
+                            className="absolute inset-0 flex items-center justify-center bg-black/15 hover:bg-black/30 transition-colors cursor-pointer group"
+                            title="Click to play video"
+                          >
+                            <div className="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 active:scale-95 transition-transform">
+                              <svg className="w-8 h-8 fill-white translate-x-0.5" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
                 </div>

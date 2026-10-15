@@ -19,7 +19,7 @@ const Ventures = () => {
     {
       title: 'Torii Minds',
       icon: BrainCircuit,
-      description: 'An advanced EdTech platform leveraging Artificial Intelligence. We provide AI-driven curriculums, intelligent ATS engines, and AI-powered interview simulations to prepare students for the modern tech landscape.',
+      description: 'Founded in 2025, Torii Minds is an advanced EdTech platform leveraging Artificial Intelligence. We provide AI-driven curriculums, intelligent ATS engines, and AI-powered interview simulations to prepare students for the modern tech landscape.',
       highlights: ['AI-Driven Curriculum', 'Smart ATS Engine', 'AI Interview Simulations'],
       link: 'https://toriiminds.com/',
       isComponent: true,

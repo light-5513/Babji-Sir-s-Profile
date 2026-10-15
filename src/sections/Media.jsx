@@ -13,10 +13,37 @@ const OracleAcademyIcon = ({ className }) => (
 
 const Media = () => {
   const mediaItems = [
-    { type: 'video', title: 'Future of AI in EdTech', icon: Play, desc: 'Keynote speaking engagement' },
-    { type: 'article', title: 'Bridging the Talent Gap', icon: OracleAcademyIcon, desc: 'Published Article', link: 'https://academy.oracle.com/en/about-success-spotlight-babji-neelam.html' },
-    { type: 'podcast', title: 'EdTech Innovators', icon: Mic, desc: 'Podcast Interview' },
-    { type: 'highlight', title: 'CodeHeat 2023 Recap', icon: Play, desc: 'Event Highlight Reel' },
+    { 
+      type: 'video', 
+      title: 'Why Technical Hub', 
+      icon: Play, 
+      desc: 'Featured Video', 
+      link: 'https://www.youtube.com/watch?v=FWswzxaCG3c',
+      image: '/assets/why_th_thumb.jpg'
+    },
+    { 
+      type: 'article', 
+      title: 'Bridging the Talent Gap', 
+      icon: OracleAcademyIcon, 
+      desc: 'Published Article', 
+      link: 'https://academy.oracle.com/en/about-success-spotlight-babji-neelam.html' 
+    },
+    { 
+      type: 'video', 
+      title: 'Project Space', 
+      icon: Play, 
+      desc: 'Featured Video', 
+      link: 'https://www.youtube.com/watch?v=E7mvZ0yTDss',
+      image: '/assets/project_space_thumb.jpg'
+    },
+    { 
+      type: 'video', 
+      title: 'Grow', 
+      icon: Play, 
+      desc: 'Featured Video', 
+      link: 'https://www.youtube.com/watch?v=WBINrie9mzc',
+      image: '/assets/grow_thumb.jpg'
+    },
   ];
 
   return (
@@ -35,7 +62,9 @@ const Media = () => {
             </p>
           </div>
           <a 
-            href="#" 
+            href="https://www.linkedin.com/in/babjineelam/" 
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl shadow-neu-light dark:shadow-neu-dark active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed font-medium transition-all hover:scale-95 text-blue-600 dark:text-blue-400"
           >
             <Linkedin size={20} /> Connect on LinkedIn
@@ -55,7 +84,22 @@ const Media = () => {
                 <a href={item.link} target="_blank" rel="noopener noreferrer" className="block h-full">
                   <Card className="cursor-pointer group hover:-translate-y-2 h-full flex flex-col">
                     <div className="aspect-video rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden relative">
-                      <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
+                      {item.image ? (
+                        <>
+                          <img 
+                            src={item.image} 
+                            alt={item.title} 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                          />
+                          <div className="absolute inset-0 bg-black/25 group-hover:bg-black/35 flex items-center justify-center transition-colors">
+                            <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                              <Play className="w-5 h-5 fill-white translate-x-0.5" />
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
+                      )}
                     </div>
                     <h4 className="text-lg font-bold mb-2">{item.title}</h4>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-auto">{item.desc}</p>
@@ -64,7 +108,15 @@ const Media = () => {
               ) : (
                 <Card className="cursor-pointer group hover:-translate-y-2 h-full flex flex-col">
                   <div className="aspect-video rounded-xl shadow-neu-light-pressed dark:shadow-neu-dark-pressed mb-6 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden relative">
-                    <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
+                    {item.image ? (
+                      <img 
+                        src={item.image} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                      />
+                    ) : (
+                      <item.icon className="w-10 h-10 text-gray-400 group-hover:scale-110 transition-transform" />
+                    )}
                   </div>
                   <h4 className="text-lg font-bold mb-2">{item.title}</h4>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-auto">{item.desc}</p>

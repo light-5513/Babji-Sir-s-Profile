@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import Card from '../components/Card';
-import { ArrowRight, Code2, Users, Rocket } from 'lucide-react';
+import { ArrowRight, Code2, Users, Rocket, Linkedin } from 'lucide-react';
 
 const StatCard = ({ icon: Icon, title, endValue, suffix = '' }) => {
   const [count, setCount] = useState(0);
@@ -61,6 +61,15 @@ const Home = () => {
             <Button as="a" href="#contact" className="gap-2">
               Get in Touch
             </Button>
+            <a
+              href="https://www.linkedin.com/in/babjineelam/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn Profile"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-[#0A66C2] text-white hover:bg-[#004182] transition-colors shadow-neu-light dark:shadow-neu-dark"
+            >
+              <Linkedin size={18} /> LinkedIn
+            </a>
           </div>
         </motion.div>
 
@@ -92,9 +101,9 @@ const Home = () => {
         transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto w-full mt-24 grid grid-cols-1 md:grid-cols-3 gap-6"
       >
-        <StatCard icon={Users} title="Students Trained" endValue={50} suffix="k+" />
-        <StatCard icon={Code2} title="Courses Launched" endValue={45} suffix="+" />
-        <StatCard icon={Rocket} title="B2B Apps Deployed" endValue={120} suffix="+" />
+        <StatCard icon={Users} title="Students Certified" endValue={16} suffix="K+" />
+        <StatCard icon={Code2} title="Courses Launched" endValue={20} suffix="+" />
+        <StatCard icon={Rocket} title="B2B Apps Deployed" endValue={20} suffix="+" />
       </motion.div>
     </section>
   );
