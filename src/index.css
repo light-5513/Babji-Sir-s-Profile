@@ -5,11 +5,24 @@
 @layer base {
   body {
     @apply transition-colors duration-300 ease-in-out;
-    overflow-x: hidden;
+    /* `clip` (not `hidden`): clips horizontal overflow WITHOUT turning the
+       element into a scroll container — `hidden` computes overflow-y to
+       `auto` and silently breaks position:sticky in all descendants. */
+    overflow-x: clip;
   }
   html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    /* Anchor jumps land instantly: with the page ~21k px tall, a CSS smooth
+       scroll glided for up to ~1.5s across the whole site. In-section jumps
+       (pills, rail, keyboard, swipes) still pass behavior:'smooth' from JS. */
+    scroll-padding-top: 4.5rem; /* clears the fixed navbar (66px) on anchor landings */
+    overflow-x: clip;
+  }
+}
+
+/* Anchored sections should land just below the fixed navbar (74px from sm up). */
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 5rem;
   }
 }
 
@@ -171,6 +184,40 @@
   .drive-ready-gallery-track {
     animation: none;
   }
+}
+
+/* Expertise stage panel: slim, theme-aware scrollbar that appears only when
+   a stage's content is taller than the pinned viewport. Page scroll chaining
+   still works — once the panel bottoms out, the wheel advances to the next
+   stage naturally. */
+.stage-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+}
+.dark .stage-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+.stage-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.stage-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+.stage-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.stage-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 9999px;
+}
+.stage-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.dark .stage-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+}
+.dark .stage-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
 }
 
 /* Spherical Neumorphic Buttons */

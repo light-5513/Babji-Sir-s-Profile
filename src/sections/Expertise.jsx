@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import useExpertiseScroll from '../hooks/useExpertiseScroll';
+import useExpertiseScroll, { EXPERTISE_STAGE_TRAVEL_SVH } from '../hooks/useExpertiseScroll';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { 
   GraduationCap, 
@@ -10,6 +10,7 @@ import {
   Lightbulb, 
   ChevronRight, 
   ChevronLeft,
+  ArrowDown,
   BrainCircuit,
   Building2
 } from 'lucide-react';
@@ -85,6 +86,7 @@ const traitData = [
         organization: 'Technical Hub',
         role: 'Established in 2016',
         logo: '/assets/th_logo.png',
+        logoBlend: 'mix-blend-multiply dark:mix-blend-normal dark:bg-white/10 dark:p-3 dark:rounded-2xl',
         description: 'Trained and certified 16,000+ students.',
         socialStats: [
           { platform: 'LinkedIn', followers: '24K+' },
@@ -301,7 +303,7 @@ const traitData = [
           { platform: 'Torii Minds · LinkedIn', followers: '4K+' }
         ],
         logos: [
-          { name: 'Technical Hub', src: '/assets/th_logo.png' },
+          { name: 'Technical Hub', src: '/assets/th_logo.png', blend: 'mix-blend-multiply dark:mix-blend-normal dark:bg-white/10 dark:p-3 dark:rounded-2xl' },
           { name: 'Torii Minds', src: '/assets/tori-black.svg' }
         ]
       },
@@ -428,6 +430,13 @@ const expertiseStages = traits.flatMap((trait, traitIndex) => {
   return [{ traitIndex, subExpertise: null, subIndex: 0, subTotal: 0 }];
 });
 
+// Stages grouped per trait — powers the bottom stage rail (progress + minimap).
+const stagesByTrait = traits.map((_, traitIndex) =>
+  expertiseStages
+    .map((stage, stageIndex) => ({ ...stage, stageIndex }))
+    .filter((stage) => stage.traitIndex === traitIndex)
+);
+
 const slideVariants = {
   enter: (dir) => ({
     x: dir > 0 ? 36 : -36,
@@ -459,32 +468,32 @@ const slideVariants = {
 
 const Expertise = () => {
   const containerRef = useRef(null);
-  const [activeStageIndex, setActiveStageIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+
+  const {
+    activeIndex: activeStageIndex,
+    direction,
+    jumpToStage: scrollToStage,
+  } = useExpertiseScroll(containerRef, expertiseStages.length);
 
   useEffect(() => {
     setIsVideoPlaying(false);
   }, [activeStageIndex]);
 
-  // Mirror of activeStageIndex so the scroll handler never reads a stale value.
+  // Mirror of activeStageIndex so touch handlers never read a stale value.
   const activeStageIndexRef = useRef(0);
   useEffect(() => {
     activeStageIndexRef.current = activeStageIndex;
   }, [activeStageIndex]);
 
-  const handleStageChange = (nextIndex, dir) => {
-    const current = activeStageIndexRef.current;
-    const computedDir = dir !== undefined ? dir : (nextIndex >= current ? 1 : -1);
-    setDirection(computedDir);
-    activeStageIndexRef.current = nextIndex;
-    setActiveStageIndex(nextIndex);
+  const handleSkipToVentures = (event) => {
+    event.preventDefault();
+    const target = document.getElementById('ventures');
+    if (!target) return;
+    const top = window.scrollY + target.getBoundingClientRect().top - 80;
+    window.scrollTo({ top, behavior: 'instant' });
   };
-
-  const scrollToStage = useExpertiseScroll(
-    containerRef, activeStageIndexRef, handleStageChange, expertiseStages.length
-  );
 
   const scrollToTrait = (targetTraitIndex) => {
     const stageIndex = expertiseStages.findIndex((stage) => stage.traitIndex === targetTraitIndex);
@@ -496,6 +505,24 @@ const Expertise = () => {
   const activeTrait = traits[activeTraitIndex];
   const MainTraitIcon = activeTrait.icon;
   const ActiveSubExpertiseIcon = activeStage.subExpertise?.icon;
+
+  // Keep the active trait pill visible when the pill row overflows on smaller
+  // screens. Scoped to the pill row's own horizontal scroll — this must never
+  // touch the window scroll (scrollIntoView used to yank the whole page).
+  const pillsRowRef = useRef(null);
+  const activePillRef = useRef(null);
+  useEffect(() => {
+    const pill = activePillRef.current;
+    const row = pillsRowRef.current;
+    if (!pill || !row) return;
+    const pillRect = pill.getBoundingClientRect();
+    const rowRect = row.getBoundingClientRect();
+    const target = row.scrollLeft + (pillRect.left - rowRect.left) - (rowRect.width - pillRect.width) / 2;
+    row.scrollTo({
+      left: Math.max(0, target),
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
+  }, [activeTraitIndex, prefersReducedMotion]);
 
   // Touch swipe support for mobile navigation
   const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
@@ -527,7 +554,8 @@ const Expertise = () => {
     <section
       id="expertise"
       ref={containerRef}
-      className="relative w-full scroll-mt-14 sm:scroll-mt-16 md:scroll-mt-20 min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] md:min-h-[calc(100svh-5rem)]"
+      style={{ height: `calc(100svh + ${(expertiseStages.length - 1) * EXPERTISE_STAGE_TRAVEL_SVH}svh)` }}
+      className="relative w-full"
     >
       <div 
         onTouchStart={handleTouchStart}
@@ -536,18 +564,12 @@ const Expertise = () => {
       >
         {/* Top Controls Bar */}
         <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between gap-2 sm:gap-4 pb-2">
-          {/* Stage Counter */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            <span className="text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl neu-sphere-light dark:neu-sphere-dark text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm tracking-wider">
-              {String(activeStageIndex + 1).padStart(2, '0')}&nbsp;/&nbsp;{expertiseStages.length}
-            </span>
-          </div>
-
           {/* Trait Pills - Horizontally scrollable on mobile, flex on desktop */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 px-1 flex-1 min-w-0">
+          <div ref={pillsRowRef} className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 px-1 flex-1 min-w-0">
             {traits.map((trait, index) => (
               <button
                 key={trait.id}
+                ref={index === activeTraitIndex ? activePillRef : null}
                 onClick={() => scrollToTrait(index)}
                 aria-pressed={index === activeTraitIndex}
                 className={`flex-shrink-0 whitespace-nowrap rounded-xl px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold transition-all duration-300 ${
@@ -561,27 +583,16 @@ const Expertise = () => {
             ))}
           </div>
 
-          {/* Prev / Next Arrows */}
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-            <button
-              onClick={() => scrollToStage(Math.max(0, activeStageIndex - 1))}
-              disabled={activeStageIndex === 0}
-              className="p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 disabled:opacity-30 disabled:pointer-events-none transition-all"
-              title="Previous expertise"
-              aria-label="Previous expertise"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <button
-              onClick={() => scrollToStage(Math.min(expertiseStages.length - 1, activeStageIndex + 1))}
-              disabled={activeStageIndex === expertiseStages.length - 1}
-              className="p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 disabled:opacity-30 disabled:pointer-events-none transition-all"
-              title="Next expertise"
-              aria-label="Next expertise"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
+          {/* Escape hatch: leave the presentation at any time */}
+          <a
+            href="#ventures"
+            onClick={handleSkipToVentures}
+            className="flex-shrink-0 inline-flex items-center gap-1.5 rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm hover:shadow-neu-light-pressed dark:hover:shadow-neu-dark-pressed hover:-translate-y-0.5 transition-all"
+            title="Skip the expertise section"
+          >
+            Skip to Ventures
+            <ArrowDown size={14} />
+          </a>
         </div>
 
         {/* Main Content Grid */}
@@ -658,7 +669,7 @@ const Expertise = () => {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="w-full h-full min-h-0 flex flex-col justify-start lg:justify-center overflow-y-auto no-scrollbar"
+                className="w-full h-full min-h-0 flex flex-col justify-start overflow-y-auto stage-scrollbar"
               >
                 {/* Mobile Compact Pillar Header */}
                 <div className="lg:hidden flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg shadow-neu-light-sm dark:shadow-neu-dark-sm mb-2 flex-shrink-0">
@@ -682,7 +693,7 @@ const Expertise = () => {
                   )}
                 </div>
 
-            <div className={`flex-1 min-h-0 flex flex-col justify-center py-1 sm:py-4 md:py-6 ${activeStage.subExpertise?.centered ? 'items-center text-center px-1 sm:px-4' : 'pl-0 sm:pl-5 md:pl-8'}`}>
+            <div className={`w-full flex flex-col justify-start my-auto py-1 sm:py-4 md:py-6 ${activeStage.subExpertise?.centered ? 'items-center text-center px-1 sm:px-4' : 'pl-0 sm:pl-5 md:pl-8'}`}>
               {activeStage.subExpertise && (
                 <div className="space-y-2 sm:space-y-3 md:space-y-4 w-full">
                     {ActiveSubExpertiseIcon && (
@@ -707,7 +718,7 @@ const Expertise = () => {
                             src={logo.src}
                             alt={logo.name}
                             title={logo.name}
-                            className={logo.size === 'large' ? 'h-24 sm:h-40 w-auto max-w-full object-contain object-center' : 'h-16 sm:h-28 w-auto max-w-full object-contain object-center'}
+                            className={`${logo.size === 'large' ? 'h-24 sm:h-40 w-auto max-w-full object-contain object-center' : 'h-16 sm:h-28 w-auto max-w-full object-contain object-center'} ${logo.blend || ''}`}
                             loading="lazy"
                           />
                         ))}
@@ -827,7 +838,7 @@ const Expertise = () => {
                         <img
                           src={activeStage.subExpertise.image}
                           alt={activeStage.subExpertise.imageAlt || `${activeStage.subExpertise.organization} image`}
-                          className="mt-3 sm:mt-4 block h-auto w-full max-w-[800px] rounded-xl shadow-neu-light-sm dark:shadow-neu-dark-sm"
+                          className="mt-3 sm:mt-4 block h-auto w-auto mx-auto max-w-full sm:max-w-[800px] max-h-[40vh] rounded-xl shadow-neu-light-sm dark:shadow-neu-dark-sm"
                         />
                       )
                     )}
@@ -948,27 +959,59 @@ const Expertise = () => {
       </div>
     </div>
 
-        {/* Bottom Progress Footer */}
-        <div className="w-full max-w-[1600px] mx-auto pt-2 sm:pt-2.5 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <span className="font-semibold text-gray-700 dark:text-gray-300 text-[11px] sm:text-xs">Progress:</span>
-            <div className="w-24 sm:w-48 md:w-64 h-2.5 sm:h-3 rounded-full bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed overflow-hidden p-0.5 flex items-center">
-              <motion.div
-                className="h-full rounded-full bg-black dark:bg-light-bg shadow-neu-light-sm dark:shadow-neu-dark-sm"
-                style={{ width: `${((activeStageIndex + 1) / expertiseStages.length) * 100}%` }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
-            <span className="font-bold text-black dark:text-white text-[11px] sm:text-xs">
-              {Math.round(((activeStageIndex + 1) / expertiseStages.length) * 100)}%
-            </span>
+        {/* Bottom Stage Rail — clickable minimap of all stages, grouped by era */}
+        <div className="w-full max-w-[1600px] mx-auto pt-2 sm:pt-2.5 flex items-center gap-2 sm:gap-3 pr-12 sm:pr-20">
+          <button
+            onClick={() => scrollToStage(Math.max(0, activeStageIndex - 1))}
+            disabled={activeStageIndex === 0}
+            className="p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 disabled:opacity-30 disabled:pointer-events-none transition-all flex-shrink-0"
+            title="Previous expertise"
+            aria-label="Previous expertise"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          <div
+            className="flex-1 min-w-0 flex items-center gap-1 sm:gap-1.5 h-6 sm:h-7"
+            role="group"
+            aria-label={`Expertise stages — ${expertiseStages.length} stages across ${traits.length} eras. Select a stage to jump to it.`}
+          >
+            {stagesByTrait.map((eraStages, traitIndex) => (
+              <div
+                key={traits[traitIndex].id}
+                style={{ flexGrow: eraStages.length }}
+                className="flex items-center gap-0.5 sm:gap-1 h-full p-0.5 rounded-full bg-light-bg dark:bg-dark-bg shadow-neu-light-pressed dark:shadow-neu-dark-pressed min-w-0 basis-0"
+                title={traits[traitIndex].title}
+              >
+                {eraStages.map((stage) => (
+                  <button
+                    key={stage.stageIndex}
+                    onClick={() => scrollToStage(stage.stageIndex)}
+                    aria-label={`Stage ${stage.stageIndex + 1} of ${expertiseStages.length} — ${stage.subExpertise?.organization || traits[traitIndex].title}`}
+                    aria-current={stage.stageIndex === activeStageIndex ? 'step' : undefined}
+                    title={`${traits[traitIndex].shortTitle} · ${stage.subExpertise?.organization || traits[traitIndex].title}`}
+                    className={`flex-1 min-w-0 h-full rounded-full transition-all duration-200 ${
+                      stage.stageIndex === activeStageIndex
+                        ? 'bg-gray-900 dark:bg-white'
+                        : stage.stageIndex < activeStageIndex
+                          ? 'bg-gray-500/50 dark:bg-white/45 hover:bg-gray-600/70 dark:hover:bg-white/65'
+                          : 'bg-gray-400/30 dark:bg-white/15 hover:bg-gray-500/45 dark:hover:bg-white/30'
+                    }`}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
 
-          <span className="font-bold text-[11px] sm:text-xs text-gray-700 dark:text-gray-300 truncate max-w-[150px] sm:max-w-none">
-            {activeStageIndex < expertiseStages.length - 1
-              ? `Next: ${expertiseStages[activeStageIndex + 1].subExpertise?.organization || traits[expertiseStages[activeStageIndex + 1].traitIndex].title}`
-              : 'Ventures next'}
-          </span>
+          <button
+            onClick={() => scrollToStage(Math.min(expertiseStages.length - 1, activeStageIndex + 1))}
+            disabled={activeStageIndex === expertiseStages.length - 1}
+            className="p-2 sm:p-2.5 rounded-xl bg-light-bg dark:bg-dark-bg text-black dark:text-white shadow-neu-light-sm dark:shadow-neu-dark-sm active:shadow-neu-light-pressed dark:active:shadow-neu-dark-pressed hover:-translate-y-0.5 disabled:opacity-30 disabled:pointer-events-none transition-all flex-shrink-0"
+            title="Next expertise"
+            aria-label="Next expertise"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </div>
     </section>

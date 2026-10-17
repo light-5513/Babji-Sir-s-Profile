@@ -1,0 +1,8 @@
+{
+  "excludes": [
+    ".opencode",
+    ".playwright-mcp",
+    "ui-audit"
+  ],
+  "gitignore": true
+}

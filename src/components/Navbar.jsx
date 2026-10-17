@@ -28,17 +28,17 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-light-bg/90 dark:bg-dark-bg/90 backdrop-blur-md shadow-neu-light-sm dark:shadow-neu-dark-sm py-3 sm:py-4' : 'bg-transparent py-4 sm:py-6'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <a href="#home" className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tighter text-black dark:text-white select-none">
+        <a href="#home" className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tighter whitespace-nowrap shrink-0 text-black dark:text-white select-none">
           Mr. Babji Neelam.
         </a>
         
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-2">
+        <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
           {NavLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:shadow-neu-light-pressed dark:hover:shadow-neu-dark-pressed"
+              className="px-3 xl:px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:shadow-neu-light-pressed dark:hover:shadow-neu-dark-pressed"
             >
               {link.name}
             </a>
@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Right Controls: Theme Toggle + Menu Hamburger */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <motion.button
             whileTap={{ scale: 0.92 }}
             onClick={toggleTheme}
@@ -102,7 +102,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -10 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden absolute top-full left-0 right-0 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl shadow-neu-light dark:shadow-neu-dark border-t border-black/5 dark:border-white/5"
+            className="lg:hidden overflow-hidden absolute top-full left-0 right-0 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl shadow-neu-light dark:shadow-neu-dark border-t border-black/5 dark:border-white/5"
           >
             <div className="flex flex-col p-5 space-y-2 max-h-[calc(100vh-5rem)] overflow-y-auto">
               {NavLinks.map((link, idx) => (
